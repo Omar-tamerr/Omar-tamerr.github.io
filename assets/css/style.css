@@ -1,0 +1,35 @@
+body {
+  background-color: #0f0f0f;
+  color: #00ff88;
+  font-family: 'Courier New', monospace;
+  margin: 0;
+  padding: 2em;
+}
+
+a { color: #0ff; }
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2em;
+  background-color: #121212;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ff88;
+}
+
+.profile-pic {
+  width: 120px;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+}
+
+header, section, footer {
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+h1, h2 {
+  color: #00ffaa;
+}
+

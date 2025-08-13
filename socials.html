@@ -4,64 +4,139 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Socials | Omar Tamer</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <style>
-    .active-tab {
-      border-bottom: 2px solid #33ff99;
-      color: #33ff99;
+  <meta name="theme-color" content="#0a0f14" />
+
+  <!-- Tailwind (same theme as index) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            base: {900:'#0a0f14',800:'#0f1720',700:'#111827'},
+            neon: {400:'#33ff99',500:'#22ffaa'}
+          },
+          boxShadow: {
+            glow: '0 0 0 2px rgba(51,255,153,0.15), 0 0 24px rgba(51,255,153,0.20)'
+          },
+          fontFamily: { display: ['Inter','system-ui','Segoe UI','Helvetica Neue','Arial','sans-serif'] }
+        }
+      }
     }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    .active-tab{color:#33ff99}
+    .card{transition: border-color .25s, transform .25s}
+    .card:hover{border-color:#33ff99; transform: translateY(-2px)}
+    .pill{padding:.15rem .5rem;border-radius:.5rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04)}
   </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans">
-  <header class="sticky top-0 bg-gray-900 z-50 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-2xl font-bold">OMAR<span class="text-green-400">.</span></a>
-      <nav class="flex gap-6 text-sm">
-        <a href="index.html" class="hover:text-green-400" id="home-tab">Home</a>
-        <a href="writeups.html" class="hover:text-green-400" id="writeups-tab">Write‑ups</a>
-        <a href="socials.html" class="hover:text-green-400" id="socials-tab">Socials</a>
-        <a href="Omar_Tamer_Resume.pdf" class="hover:text-green-400">Resume</a>
+<body class="bg-base-900 text-slate-200 font-display selection:bg-neon-500/20 selection:text-slate-50">
+
+  <!-- Header / Nav (matches index) -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-base-900/70 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-extrabold tracking-tight">Omar Tamer<span class="text-neon-400">.</span></a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html" class="hover:text-neon-400" id="home-tab">Home</a>
+        <a href="writeups.html" class="hover:text-neon-400" id="writeups-tab">Write-ups</a>
+        <a href="socials.html" class="hover:text-neon-400 active-tab" id="socials-tab">Socials</a>
+        <a href="Omar_Tamer_Resume.pdf" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10">Download Resume</a>
       </nav>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-10">
+  <main class="max-w-6xl mx-auto px-4 py-12">
     <section>
-      <h1 class="text-4xl font-bold mb-4">Socials</h1>
-      <p class="text-gray-300 mb-8">Follow and connect with me across my active platforms.</p>
-      <div class="grid md:grid-cols-3 gap-6">
-        <a href="https://www.youtube.com/@OTSec" target="_blank" class="block p-6 rounded-2xl bg-gray-800 border border-gray-700 hover:border-green-400 transition">
-          <div class="text-xs text-gray-400">YouTube</div>
+      <h1 class="text-3xl md:text-4xl font-extrabold">Socials & Profiles</h1>
+      <p class="mt-3 text-slate-300">Follow and connect with me across platforms.</p>
+
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@OTSec" target="_blank" rel="noopener"
+           class="card block p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-xs text-slate-400">YouTube</div>
           <div class="mt-1 text-lg font-semibold">OTSec — Cybersecurity</div>
-          <p class="mt-1 text-sm text-gray-300">Walkthroughs, red teaming tactics, and certification tips.</p>
+          <p class="mt-1 text-sm text-slate-300">Walkthroughs, red teaming tactics, and certification tips.</p>
+          <div class="mt-3 text-xs text-slate-400">/ @OTSec</div>
         </a>
-        <a href="https://www.linkedin.com/in/omar-tamer-1a986b2a7/" target="_blank" class="block p-6 rounded-2xl bg-gray-800 border border-gray-700 hover:border-green-400 transition">
-          <div class="text-xs text-gray-400">LinkedIn</div>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/omar-tamer-1a986b2a7/" target="_blank" rel="noopener"
+           class="card block p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-xs text-slate-400">LinkedIn</div>
           <div class="mt-1 text-lg font-semibold">Professional Profile</div>
-          <p class="mt-1 text-sm text-gray-300">Certifications, achievements, and updates.</p>
+          <p class="mt-1 text-sm text-slate-300">Certifications, achievements, and updates.</p>
+          <div class="mt-3 text-xs text-slate-400">/in/omar-tamer-1a986b2a7</div>
         </a>
-        <a href="https://github.com/Omar-tamerr" target="_blank" class="block p-6 rounded-2xl bg-gray-800 border border-gray-700 hover:border-green-400 transition">
-          <div class="text-xs text-gray-400">GitHub</div>
+
+        <!-- GitHub -->
+        <a href="https://github.com/Omar-tamerr" target="_blank" rel="noopener"
+           class="card block p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-xs text-slate-400">GitHub</div>
           <div class="mt-1 text-lg font-semibold">Code & Projects</div>
-          <p class="mt-1 text-sm text-gray-300">Scripts, tools, and write-up repositories.</p>
+          <p class="mt-1 text-sm text-slate-300">Scripts, tools, and write-up repositories.</p>
+          <div class="mt-3 text-xs text-slate-400">@Omar-tamerr</div>
         </a>
-        <a href="mailto:omartamerrr3@gmail.com" class="block p-6 rounded-2xl bg-gray-800 border border-gray-700 hover:border-green-400 transition">
-          <div class="text-xs text-gray-400">Email</div>
+
+        <!-- Email -->
+        <a href="mailto:omartamerrr3@gmail.com"
+           class="card block p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-xs text-slate-400">Email</div>
           <div class="mt-1 text-lg font-semibold">omartamerrr3@gmail.com</div>
-          <p class="mt-1 text-sm text-gray-300">Reach out for collaborations or opportunities.</p>
+          <p class="mt-1 text-sm text-slate-300">Reach out for collaborations or opportunities.</p>
+          <div class="mt-3 text-xs text-slate-400">Usually replies within 1–2 days</div>
         </a>
+
+        <!-- TryHackMe -->
+        <a href="https://tryhackme.com/p/OmarTamer0" target="_blank" rel="noopener"
+           class="card block p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-xs text-slate-400">TryHackMe</div>
+          <div class="mt-1 text-lg font-semibold">Rank #156 Worldwide <span class="pill ml-1">Top 0.1%</span></div>
+          <p class="mt-1 text-sm text-slate-300">Hands-on labs and practical challenges.</p>
+          <div class="mt-3 text-xs text-slate-400">/p/OmarTamer0</div>
+        </a>
+
+        <!-- Hack The Box -->
+        <a href="https://app.hackthebox.com/profile/1897032" target="_blank" rel="noopener"
+           class="card block p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-xs text-slate-400">Hack The Box</div>
+          <div class="mt-1 text-lg font-semibold">#40 Egypt <span class="pill ml-1">Hacker Tier</span></div>
+          <p class="mt-1 text-sm text-slate-300">Advanced machines and labs for pentesting.</p>
+          <div class="mt-3 text-xs text-slate-400">/profile/1897032</div>
+        </a>
+
+        <!-- CyberTalents -->
+        <a href="https://cybertalents.com/members/OmarTamer0/profile" target="_blank" rel="noopener"
+           class="card block p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-xs text-slate-400">CyberTalents</div>
+          <div class="mt-1 text-lg font-semibold">#5 Worldwide</div>
+          <p class="mt-1 text-sm text-slate-300">CTF competitions and global rankings.</p>
+          <div class="mt-3 text-xs text-slate-400">/members/OmarTamer0/profile</div>
+        </a>
+
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-gray-800 py-6 text-center text-sm text-gray-500">
-    © <span id="year"></span> Omar Tamer. All rights reserved.
+  <footer class="py-10 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4 text-sm text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>© <span id="year"></span> Omar Tamer. All rights reserved.</div>
+      <div class="flex items-center gap-4">
+        <a href="writeups.html" class="hover:text-neon-400">Write-ups</a>
+        <a href="socials.html" class="hover:text-neon-400 active-tab">Socials</a>
+        <a href="https://github.com/Omar-tamerr" target="_blank" rel="noopener" class="hover:text-neon-400">GitHub</a>
+      </div>
+    </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    const current = window.location.pathname.split('/').pop();
-    if(current === 'socials.html') document.getElementById('socials-tab').classList.add('active-tab');
   </script>
 </body>
 </html>

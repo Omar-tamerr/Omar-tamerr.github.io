@@ -1,190 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Omar Tamer | Cybersecurity Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="description" content="Offensive security specialist, penetration tester, and CTF competitor. CEH Master, CPENT, LPT Master, eJPT. TryHackMe #156 Worldwide, CyberTalents #5 Worldwide, Hack The Box #40 Egypt." />
+  <meta name="theme-color" content="#0a0f14" />
+
+  <!-- Tailwind CSS (shared theme) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            base: {900:'#0a0f14',800:'#0f1720',700:'#111827'},
+            neon: {400:'#33ff99',500:'#22ffaa'}
+          },
+          boxShadow: { glow: '0 0 0 2px rgba(51,255,153,0.15), 0 0 24px rgba(51,255,153,0.20)'},
+          fontFamily: { display: ['Inter','system-ui','Segoe UI','Helvetica Neue','Arial','sans-serif']}
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: radial-gradient(ellipse at bottom, #0c0c1d 0%, #000000 100%);
-      background-attachment: fixed;
-      color: #b9fbc0;
-      font-family: 'Courier New', monospace;
-      margin: 0;
-      padding: 2em;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background-image: 
-        radial-gradient(circle at 20% 20%, #00d9ff33 0%, transparent 60%),
-        radial-gradient(circle at 80% 80%, #ff4efc33 0%, transparent 60%);
-      animation: neonPulse 10s infinite alternate;
-      z-index: 0;
-    }
-
-    @keyframes neonPulse {
-      0% {
-        transform: scale(1);
-        opacity: 0.4;
-      }
-      100% {
-        transform: scale(1.5);
-        opacity: 0.7;
-      }
-    }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 2em;
-      background-color: #14142b;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #00d9ff;
-      position: relative;
-      z-index: 1;
-    }
-
-    a {
-      color: #00d9ff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #ff4efc;
-    }
-
-    .profile-pic {
-      width: 120px;
-      border-radius: 50%;
-      display: block;
-      margin: auto;
-    }
-
-    header, section, footer {
-      margin-bottom: 2em;
-      text-align: center;
-    }
-
-    h1, h2 {
-      color: #85f4ff;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      margin: 0.5em 0;
-    }
-
-    .tagline {
-      font-size: 1.2em;
-      color: #fff7ae;
-      font-weight: bold;
-    }
-
-    .coming-soon {
-      font-style: italic;
-      font-size: 1.1em;
-      color: #ff4efc;
-      text-shadow: 0 0 8px #ff4efc;
-    }
+    .active-tab{color:#33ff99}
+    .matrix-bg:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;background-image:linear-gradient(to bottom,transparent 0 95%,rgba(51,255,153,.4) 100%),linear-gradient(90deg,transparent 0 95%,rgba(51,255,153,.35) 100%);background-size:100% 28px,28px 100%;mask-image:radial-gradient(70% 60% at 50% 40%, black 55%, transparent 100%)}
+    .reveal{transform:translateY(16px);opacity:0;transition:all .6s ease}
+    .reveal.show{transform:translateY(0);opacity:1}
   </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <img src="/assets/img/profile.jpg" alt="Omar Tamer" class="profile-pic">
-      <h1>Omar Tamer</h1>
-      <nav>
-        <a href="/">🏠 Home</a> |
-        <a href="/writeups.html">📝 Writeups</a> |
-        <a href="/socials.html">🌐 Connect</a>
+<body class="bg-base-900 text-slate-200 font-display selection:bg-neon-500/20 selection:text-slate-50">
+  <!-- Nav Tabs -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-base-900/70 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-extrabold tracking-tight">OMAR<span class="text-neon-400">.</span></a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html" class="hover:text-neon-400 active-tab">Home</a>
+        <a href="writeups.html" class="hover:text-neon-400">Write‑ups</a>
+        <a href="socials.html" class="hover:text-neon-400">Socials</a>
+        <a href="Omar_Tamer_Resume.pdf" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10">Download Resume</a>
       </nav>
-      <p class="tagline">💻 Penetration Testing | 📍 Advanced Red Teaming | 🧠 Practical CTF Competitor</p>
-    </header>
+    </div>
+  </header>
 
-   <section>
-  <h2>About Me</h2>
-  <p>
-    More than just code and CTFs — I'm a passionate cybersecurity professional and recent graduate with a Bachelor's in Business Information Systems. 
-    Fully certified in <strong>CEH Master</strong> , <strong>CPENT</strong> , <strong>LPT Master</strong>  (by EC-Council), <strong>eJPT</strong> , and <strong>PCEP</strong> (Certified Entry-Level Python Programmer by the Python Institute), I specialize in hands-on offensive security, red teaming, and penetration testing.
-  </p>
-</section>
+  <!-- Hero -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="absolute inset-0 matrix-bg"></div>
+    <div class="max-w-6xl mx-auto px-4 py-24 md:py-32">
+      <div class="grid md:grid-cols-12 gap-10 items-center">
+        <div class="md:col-span-7">
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Penetration Testing • Red Teaming • CTFs</h1>
+          <p class="mt-4 text-slate-300 max-w-2xl">Fresh BIS graduate based in Cairo. Hands‑on offensive security: AD/Kerberos, web application security, and adversary emulation. Breaking systems to build stronger defenses.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#projects" class="px-5 py-2.5 rounded-2xl bg-neon-400 text-base-900 font-semibold shadow-glow">View Projects</a>
+            <a href="writeups.html" class="px-5 py-2.5 rounded-2xl border border-white/15 hover:bg-white/5">CTF Write‑ups</a>
+            <a href="socials.html" class="px-5 py-2.5 rounded-2xl border border-white/15 hover:bg-white/5">Socials</a>
+            <a href="Omar_Tamer_Resume.pdf" class="px-5 py-2.5 rounded-2xl border border-white/15 hover:bg-white/5">Download Resume</a>
+          </div>
+        </div>
+        <div class="md:col-span-5">
+          <div class="relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0 p-6">
+            <div class="grid grid-cols-2 gap-3 text-sm">
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div class="text-xs text-slate-400">TryHackMe</div>
+                <div class="mt-1 text-xl font-bold">#156 Worldwide</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div class="text-xs text-slate-400">CyberTalents</div>
+                <div class="mt-1 text-xl font-bold">#5 Worldwide</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div class="text-xs text-slate-400">Hack The Box</div>
+                <div class="mt-1 text-xl font-bold">#40 Egypt</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div class="text-xs text-slate-400">Certifications</div>
+                <div class="mt-1 font-semibold">CEH Master, CPENT, LPT Master, eJPT, PCEP</div>
+              </div>
+            </div>
+            <div class="absolute -inset-x-6 -bottom-6 h-24 blur-3xl bg-neon-400/10 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- About -->
+  <section id="about" class="py-20 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-12 gap-8 items-start">
+        <div class="md:col-span-7">
+          <h2 class="text-3xl md:text-4xl font-bold">About</h2>
+          <p class="mt-4 text-slate-300 leading-relaxed">More than just code and CTFs — I'm a passionate cybersecurity professional and recent graduate with a Bachelor's in Business Information Systems. Fully certified in <span class="font-semibold">CEH Master</span>, <span class="font-semibold">CPENT</span>, <span class="font-semibold">LPT Master</span> (EC‑Council), <span class="font-semibold">eJPT</span>, and <span class="font-semibold">PCEP</span>. I specialize in offensive security, red teaming, and penetration testing.</p>
+          <ul class="mt-6 space-y-2 text-slate-300">
+            <li>• Areas: Active Directory, SMB/Kerberos, Web/AppSec</li>
+            <li>• Languages: Python, Bash, PowerShell</li>
+            <li>• Tools: Impacket, Nmap, Burp Suite, Mimikatz, Metasploit</li>
+          </ul>
+        </div>
+        <div class="md:col-span-5">
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+            <h3 class="font-semibold text-lg">Certifications</h3>
+            <ul class="mt-3 grid sm:grid-cols-2 gap-3 text-sm">
+              <li class="p-3 rounded-xl bg-base-800 border border-white/10">PCEP (Python Institute)</li>
+              <li class="p-3 rounded-xl bg-base-800 border border-white/10">eJPT (INE)</li>
+              <li class="p-3 rounded-xl bg-base-800 border border-white/10">LPT Master</li>
+              <li class="p-3 rounded-xl bg-base-800 border border-white/10">CPENT</li>
+              <li class="p-3 rounded-xl bg-base-800 border border-white/10">CEH Master</li>
+              <li class="p-3 rounded-xl bg-base-800 border border-white/10">CEH Practical / v12</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Projects (only real ones) -->
+  <section id="projects" class="py-20 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-end justify-between">
+        <h2 class="text-3xl md:text-4xl font-bold">Projects</h2>
+        <a href="https://github.com/Omar-tamerr" class="text-sm hover:text-neon-400" target="_blank" rel="noopener">See all on GitHub →</a>
+      </div>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <!-- BruteVector -->
+        <article class="group p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-neon-400/40 transition reveal">
+          <div class="aspect-video rounded-xl bg-base-800 border border-white/10 grid place-items-center text-slate-400 text-sm">Screenshot</div>
+          <h3 class="mt-4 text-lg font-semibold">BruteVector</h3>
+          <p class="mt-1 text-sm text-slate-300">GUI brute‑force tool for HTTP/SMB/FTP/SSH with smart wordlist handling and resumable batches.</p>
+          <div class="mt-3 flex gap-2 text-xs text-slate-400">
+            <span class="px-2 py-1 rounded-lg bg-white/5 border border-white/10">Python</span>
+            <span class="px-2 py-1 rounded-lg bg-white/5 border border-white/10">Tkinter</span>
+          </div>
+          <a class="mt-4 inline-block text-sm text-neon-400 hover:underline" href="https://github.com/Omar-tamerr/BruteVector" target="_blank" rel="noopener">Repo →</a>
+        </article>
+        <!-- Tpeek -->
+        <article class="group p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-neon-400/40 transition reveal">
+          <div class="aspect-video rounded-xl bg-base-800 border border-white/10 grid place-items-center text-slate-400 text-sm">Screenshot</div>
+          <h3 class="mt-4 text-lg font-semibold">Tpeek</h3>
+          <p class="mt-1 text-sm text-slate-300">Targeted SMB recon scanner for quick shares/users enumeration during internal engagements.</p>
+          <div class="mt-3 flex gap-2 text-xs text-slate-400">
+            <span class="px-2 py-1 rounded-lg bg-white/5 border border-white/10">Python</span>
+          </div>
+          <a class="mt-4 inline-block text-sm text-neon-400 hover:underline" href="https://github.com/Omar-tamerr/Tpeek" target="_blank" rel="noopener">Repo →</a>
+        </article>
+        <!-- CPENT Report (summary on request) -->
+        <article class="group p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-neon-400/40 transition reveal">
+          <div class="aspect-video rounded-xl bg-base-800 border border-white/10 grid place-items-center text-slate-400 text-sm">Report</div>
+          <h3 class="mt-4 text-lg font-semibold">CPENT Engagement Report</h3>
+          <p class="mt-1 text-sm text-slate-300">100‑page red‑team style engagement report. Summary available upon request.</p>
+          <a class="mt-4 inline-block text-sm text-neon-400 hover:underline" href="mailto:omartamerrr3@gmail.com?subject=CPENT%20Report%20Summary%20Request">Request Summary →</a>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Certifications 📜</h2>
-     <ul>
-  <li>✅ PCEP (Certified Entry-Level Python Programmer – Python Institute)</li>
-  <li>✅ eJPT (Junior Penetration Tester – INE)</li>
-  <li>✅ LPT Master (Licensed Penetration Tester – EC-Council)</li>
-  <li>✅ CPENT (Certified Penetration Testing Professional – EC-Council)</li>
-  <li>✅ CEH Master (CEH v12 + CEH Practical – EC-Council)</li>
-  <li>✅ CEH Practical (Hands-on Ethical Hacking Exam – EC-Council)</li>
-  <li>✅ CEH v12 (Certified Ethical Hacker – EC-Council)</li>
-    </ul>
+  <!-- CTF Write-ups Preview (kept minimal) -->
+  <section id="writeups" class="py-20 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-end justify-between">
+        <h2 class="text-3xl md:text-4xl font-bold">CTF Write‑ups</h2>
+        <a href="writeups.html" class="text-sm hover:text-neon-400">Browse all →</a>
+      </div>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <a href="wgel.html" class="block p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-neon-400/40 transition reveal">
+          <div class="text-xs text-slate-400">TryHackMe</div>
+          <div class="mt-1 text-lg font-semibold">WGE LCTF — Full Exploitation & Priv‑Esc</div>
+          <p class="mt-1 text-sm text-slate-300">End‑to‑end walkthrough with enumeration, exploitation, and escalation.</p>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    </section>
+  <!-- Education & Skills (from your code) -->
+  <section id="skills" class="py-20 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold">Skills & Tooling</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6 text-slate-300">
+        <ul class="space-y-2">
+          <li>• Programming: Python, Bash, PowerShell</li>
+          <li>• Offensive Domains: Active Directory, SMB, Kerberos</li>
+          <li>• Tools: Metasploit, Impacket, Nmap, Burp Suite, Mimikatz</li>
+        </ul>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">Education</h3>
+          <ul class="mt-2 space-y-1 text-sm">
+            <li>• Modern Academy Maadi — BIS (2022–2025)</li>
+            <li>• Cairo International School — High School (2009–2021)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Projects 💻</h2>
-      <ul>
-        <li><a href="https://github.com/Omar-tamerr/BruteVector">BruteVector</a> - GUI brute-force tool for HTTP/SMB/FTP/SSH</li>
-        <li><a href="https://github.com/Omar-tamerr/Tpeek">Tpeek</a> - Targeted SMB recon scanner</li>
-        <li>🧾 CPENT 100-page Engagement Report (Summary available upon request)</li>
-      </ul>
-    </section>
+  <!-- OTSec -->
+  <section id="content" class="py-20 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold">OTSec — YouTube</h2>
+      <p class="mt-3 text-slate-300">Walkthroughs, red teaming tactics, and certification tips.</p>
+      <div class="mt-6 rounded-2xl overflow-hidden border border-white/10 bg-base-800 aspect-video">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/HJ71nuCv8Wo" title="OTSec video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
 
+  <!-- Contact -->
+  <section id="contact" class="py-20 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-12 gap-8 items-start">
+        <div class="md:col-span-6">
+          <h2 class="text-3xl md:text-4xl font-bold">Contact</h2>
+          <p class="mt-3 text-slate-300">Open to remote internships and junior penetration tester roles.</p>
+          <ul class="mt-6 space-y-2 text-slate-300">
+            <li>• Email: <a class="text-neon-400 hover:underline" href="mailto:omartamerrr3@gmail.com">omartamerrr3@gmail.com</a></li>
+            <li>• GitHub: <a class="text-neon-400 hover:underline" target="_blank" rel="noopener" href="https://github.com/Omar-tamerr">@Omar‑tamerr</a></li>
+            <li>• LinkedIn: <a class="text-neon-400 hover:underline" target="_blank" rel="noopener" href="https://www.linkedin.com/in/omar-tamer-1a986b2a7/">/omar‑tamer‑1a986b2a7</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-6">
+          <form name="contact" method="POST" data-netlify="true" class="p-6 rounded-2xl bg-white/5 border border-white/10">
+            <input type="hidden" name="form-name" value="contact">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm text-slate-400">Name</label>
+                <input required name="name" class="mt-1 w-full px-3 py-2 rounded-xl bg-base-800 border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-400/50" />
+              </div>
+              <div>
+                <label class="block text-sm text-slate-400">Email</label>
+                <input required type="email" name="email" class="mt-1 w-full px-3 py-2 rounded-xl bg-base-800 border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-400/50" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-sm text-slate-400">Message</label>
+                <textarea required name="message" rows="5" class="mt-1 w-full px-3 py-2 rounded-xl bg-base-800 border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-400/50"></textarea>
+              </div>
+            </div>
+            <button class="mt-4 px-5 py-2.5 rounded-2xl bg-neon-400 text-base-900 font-semibold shadow-glow">Send</button>
+            <p class="mt-3 text-xs text-slate-400">Or email me directly.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Skills & Tooling 🛠</h2>
-      <ul>
-        <li>💻 Programming: Python, Bash, PowerShell</li>
-        <li>📍 Offensive Domains: Active Directory, SMB, Kerberos</li>
-        <li>🧪 Tools: Metasploit, Impacket, Nmap, Burp Suite, Mimikatz</li>
-      </ul>
-    </section>
+  <footer class="py-10 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4 text-sm text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>© <span id="year"></span> Omar Tamer. All rights reserved.</div>
+      <div class="flex items-center gap-4">
+        <a href="writeups.html" class="hover:text-neon-400">Write‑ups</a>
+        <a href="socials.html" class="hover:text-neon-400">Socials</a>
+        <a href="https://github.com/Omar-tamerr" target="_blank" rel="noopener" class="hover:text-neon-400">GitHub</a>
+      </div>
+    </div>
+  </footer>
 
-    <section>
-      <h2>CTF & Platform Rankings 🧠</h2>
-      <ul>
-        <li>🥇 TryHackMe: <a href="https://tryhackme.com/p/OmarTamer0">Rank #140 Worldwide</a></li>
-        <li>🥈 CyberTalents: <a href="https://cybertalents.com/members/OmarTamer0/profile">Rank #2 Worldwide</a></li>
-		<li>🛡️ Hack The Box: <a href="https://app.hackthebox.com/profile/1897032" target="_blank">🇪🇬 Ranked #35 in Egypt</a></li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Education 🎓</h2>
-      <ul>
-        <li>Modern Academy Maadi (Bachelor's in BIS, 2022–2025)</li>
-        <li>Cairo International School (High School, 2009–2021)</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Contact 📬</h2>
-      <p>Email: <a href="mailto:omartamerrr3@gmail.com">omartamerrr3@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/omar-tamer-1a986b2a7/">linkedin.com/in/omar-tamer</a></p>
-      <p>GitHub: <a href="https://github.com/Omar-tamerr">Omar-tamerr</a></p>
-    </section>
-
-    <footer>
-      <p>&copy; 2025 Omar Tamer. Built with 💻 Jekyll & GitHub Pages.</p>
-    </footer>
-  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const onScroll = () => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) el.classList.add('show');
+      });
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('load', onScroll);
+  </script>
 </body>
 </html>
 

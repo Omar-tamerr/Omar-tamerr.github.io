@@ -1,114 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Writeups | Omar Tamer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CTF Write‑ups | Omar Tamer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <style>
-    body {
-      background: radial-gradient(ellipse at bottom, #0c0c1d 0%, #000000 100%);
-      background-attachment: fixed;
-      color: #b9fbc0;
-      font-family: 'Courier New', monospace;
-      margin: 0;
-      padding: 2em;
-      overflow-x: hidden;
-      position: relative;
+    .active-tab {
+      border-bottom: 2px solid #33ff99;
+      color: #33ff99;
     }
-
-    body::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background-image: 
-        radial-gradient(circle at 20% 20%, #00d9ff33 0%, transparent 60%),
-        radial-gradient(circle at 80% 80%, #ff4efc33 0%, transparent 60%);
-      animation: neonPulse 10s infinite alternate;
-      z-index: 0;
-    }
-
-    @keyframes neonPulse {
-      0% {
-        transform: scale(1);
-        opacity: 0.4;
-      }
-      100% {
-        transform: scale(1.5);
-        opacity: 0.7;
-      }
-    }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 2em;
-      background-color: #14142b;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #00d9ff;
-      position: relative;
-      z-index: 1;
-      text-align: left;
-    }
-
-    h1 {
-      color: #85f4ff;
-      font-size: 2.5em;
-      text-align: center;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li {
-      margin: 1.2em 0;
-      font-size: 1.2em;
-    }
-
-    a {
-      color: #00d9ff;
-      text-decoration: none;
-      border-bottom: 1px dashed #00d9ff;
-    }
-
-    a:hover {
-      color: #ff4efc;
-      border-bottom: 1px solid #ff4efc;
-    }
-
-    .badge {
-      font-size: 0.9em;
-      background: #00f5d455;
-      color: #00f5d4;
-      padding: 2px 6px;
-      border-radius: 6px;
-      margin-left: 8px;
-    }
-
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>📝 Writeups</h1>
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <header class="sticky top-0 bg-gray-900 z-50 border-b border-gray-800">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold">OMAR<span class="text-green-400">.</span></a>
+      <nav class="flex gap-6 text-sm">
+        <a href="index.html" class="hover:text-green-400" id="home-tab">Home</a>
+        <a href="writeups.html" class="hover:text-green-400" id="writeups-tab">Write‑ups</a>
+        <a href="socials.html" class="hover:text-green-400" id="socials-tab">Socials</a>
+        <a href="Omar_Tamer_Resume.pdf" class="hover:text-green-400">Resume</a>
+      </nav>
+    </div>
+  </header>
 
-    <ul>
-      <li>
-        <a href="wgel.html" target="_blank">🚩 TryHackMe: WGEL CTF Writeup</a>
-        <span class="badge">NEW</span>
-      </li>
+  <main class="max-w-6xl mx-auto px-4 py-10">
+    <section>
+      <h1 class="text-4xl font-bold mb-4">CTF Write‑ups</h1>
+      <p class="text-gray-300 mb-8">A curated selection of my most detailed walkthroughs for CTF challenges and labs.</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Keep only Card 1 -->
+        <a href="wgel.html" class="block p-6 rounded-2xl bg-gray-800 border border-gray-700 hover:border-green-400 transition">
+          <div class="text-xs text-gray-400">TryHackMe</div>
+          <div class="mt-1 text-lg font-semibold">WGE LCTF — Full Exploitation & Priv‑Esc</div>
+          <p class="mt-1 text-sm text-gray-300">End‑to‑end walkthrough with enumeration, exploitation, and privilege escalation.</p>
+        </a>
+      </div>
+    </section>
+  </main>
 
-      <!-- Add more writeups here -->
-      <!--
-      <li>
-        <a href="roomname.html" target="_blank">🛡️ TryHackMe: Room Title</a>
-      </li>
-      -->
-    </ul>
-  </div>
+  <footer class="border-t border-gray-800 py-6 text-center text-sm text-gray-500">
+    © <span id="year"></span> Omar Tamer. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const current = window.location.pathname.split('/').pop();
+    if(current === 'writeups.html') document.getElementById('writeups-tab').classList.add('active-tab');
+  </script>
 </body>
 </html>
 

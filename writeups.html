@@ -3,81 +3,70 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CTF Write-ups | Omar Tamer</title>
-  <meta name="theme-color" content="#0a0f14" />
-
-  <!-- Tailwind (same theme as index/socials) -->
+  <title>Omar Tamer | Writeups</title>
+  <meta name="description" content="CTF and technical writeups by Omar Tamer; cybersecurity and red team insights." />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            base: {900:'#0a0f14',800:'#0f1720',700:'#111827'},
-            neon: {400:'#33ff99',500:'#22ffaa'}
-          },
-          boxShadow: { glow: '0 0 0 2px rgba(51,255,153,0.15), 0 0 24px rgba(51,255,153,0.20)' },
-          fontFamily: { display: ['Inter','system-ui','Segoe UI','Helvetica Neue','Arial','sans-serif'] }
-        }
-      }
-    }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .active-tab{color:#33ff99}
-    .card{transition: border-color .25s, transform .25s}
-    .card:hover{border-color:#33ff99; transform: translateY(-2px)}
+    :root { color-scheme: dark; }
+    .grid-card { @apply bg-neutral-900/60 border border-neutral-800 rounded-2xl p-6 backdrop-blur shadow-lg transition transform hover:-translate-y-0.5 hover:shadow-xl; }
+    .link { @apply underline decoration-neutral-600 hover:decoration-neutral-400; }
   </style>
 </head>
-<body class="bg-base-900 text-slate-200 font-display selection:bg-neon-500/20 selection:text-slate-50">
-
-  <!-- Header / Nav (matches index/socials) -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-base-900/70 border-b border-white/5">
+<body class="bg-black text-neutral-200 selection:bg-emerald-500/30 selection:text-emerald-100">
+  <header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-neutral-900">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="index.html" class="text-2xl font-extrabold tracking-tight">Omar Tamer<span class="text-neon-400">.</span></a>
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="index.html" class="hover:text-neon-400">Home</a>
-        <a href="writeups.html" class="hover:text-neon-400 active-tab">Write-ups</a>
-        <a href="socials.html" class="hover:text-neon-400">Socials</a>
-        <a href="Omar_Tamer_Resume.pdf" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10">Download Resume</a>
+      <a href="/index.html" class="font-semibold tracking-wide">OMAR TAMER</a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a class="hover:text-white/90" href="/index.html#about">About</a>
+        <a class="hover:text-white/90" href="/index.html#highlights">Highlights</a>
+        <a class="hover:text-white/90" href="/index.html#talks">Talks</a>
+        <a class="hover:text-white/90" href="/index.html#projects">Projects</a>
+        <a class="hover:text-white/90" href="/index.html#certs">Certifications</a>
+        <a class="hover:text-white/90" href="/index.html#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Main -->
-  <main class="max-w-6xl mx-auto px-4 py-12">
-    <section>
-      <h1 class="text-3xl md:text-4xl font-extrabold">CTF Write-ups</h1>
-      <p class="mt-3 text-slate-300">A curated selection of my most detailed walkthroughs for CTF challenges and labs.</p>
+  <main class="max-w-6xl mx-auto px-4 py-16 space-y-16">
+    <section id="ctf-writeups">
+      <h2 class="text-2xl font-bold">CTF Writeups</h2>
+      <p class="mt-3 text-neutral-300">Hands-on CTF and lab challenge solutions showcasing exploitation steps, privilege escalation, and red-team methodology.</p>
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="grid-card">
+          <h3 class="font-semibold">TryHackMe – WGE LCTF</h3>
+          <p class="mt-2 text-neutral-300">Detailed writeup of the WGE LCTF room; web exploitation and enumeration to root privilege escalation.</p>
+          <div class="mt-3">
+            <a class="link text-sm" href="/wgel.html" target="_blank" rel="noopener">Read full writeup</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- WGEL (only card) -->
-        <a href="wgel.html" class="card block rounded-2xl bg-white/5 border border-white/10 overflow-hidden">
-          <div class="aspect-video bg-base-800 border-b border-white/10">
-            <!-- Update src if your image name is different -->
-            <img src="assets/img/wgel/cover.png" alt="WGEL CTF Write-up Thumbnail" class="w-full h-full object-cover">
+    <section id="technical-articles">
+      <h2 class="text-2xl font-bold">Technical Articles</h2>
+      <p class="mt-3 text-neutral-300">I publish cybersecurity articles on <a class="link" href="https://medium.com/@OmarTamer0" target="_blank" rel="noopener">Medium</a>, sharing my experiences and tools I build.</p>
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="grid-card">
+          <h3 class="font-semibold">How I became a CEH Master at 21; the beginning of my offensive security path</h3>
+          <p class="mt-2 text-neutral-300">Personal journey and lessons learned while pursuing certifications and building a career in offensive security.</p>
+          <div class="mt-3">
+            <a class="link text-sm" href="https://medium.com/@OmarTamer0/how-i-became-a-ceh-master-at-21-the-beginning-of-my-offensive-security-path-1fd7c7199b62" target="_blank" rel="noopener">Read on Medium</a>
           </div>
-          <div class="p-6">
-            <div class="text-xs text-slate-400">TryHackMe</div>
-            <div class="mt-1 text-lg font-semibold">WGE LCTF — Full Exploitation & Priv-Esc</div>
-            <p class="mt-1 text-sm text-slate-300">End-to-end walkthrough with enumeration, exploitation, and privilege escalation.</p>
+        </article>
+        <article class="grid-card">
+          <h3 class="font-semibold">Why I built OTSec; offensive security in OT/IoT environments</h3>
+          <p class="mt-2 text-neutral-300">Explaining the concept, development, and goals behind OTSec – a toolkit for safe, responsible OT/IoT penetration testing.</p>
+          <div class="mt-3">
+            <a class="link text-sm" href="https://medium.com/@OmarTamer0/why-i-built-otsec-offensive-security-in-ot-iot-environments-afeeb28c34bb" target="_blank" rel="noopener">Read on Medium</a>
           </div>
-        </a>
+        </article>
       </div>
     </section>
   </main>
 
-  <!-- Footer (matches index/socials) -->
-  <footer class="py-10 border-t border-white/5">
-    <div class="max-w-6xl mx-auto px-4 text-sm text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <div>© <span id="year"></span> Omar Tamer. All rights reserved.</div>
-      <div class="flex items-center gap-4">
-        <a href="writeups.html" class="hover:text-neon-400 active-tab">Write-ups</a>
-        <a href="socials.html" class="hover:text-neon-400">Socials</a>
-        <a href="https://github.com/Omar-tamerr" target="_blank" rel="noopener" class="hover:text-neon-400">GitHub</a>
-      </div>
+  <footer class="border-t border-neutral-900">
+    <div class="max-w-6xl mx-auto px-4 py-10 text-sm text-neutral-500">
+      © <span id="year"></span> Omar Tamer; All rights reserved.
     </div>
   </footer>
 

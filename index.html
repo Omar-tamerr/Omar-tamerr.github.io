@@ -1,56 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Omar Tamer | Red Team & Penetration Testing Specialist</title>
-  <meta name="description" content="Portfolio of Omar Tamer; Red Team & Penetration Testing Specialist; Exam Item Writer; speaker; writeups; tools; talks; and contact." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root { color-scheme: dark; }
-    .container { max-width: 1140px; }
-    .card { @apply bg-neutral-900/70 border border-neutral-800 rounded-2xl p-6 shadow-lg transition duration-200; }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.45); }
-    .chip { @apply inline-flex items-center rounded-full border border-neutral-700 px-3 py-1 text-xs text-neutral-200; }
-    .link { @apply underline decoration-neutral-600 underline-offset-4 hover:decoration-neutral-400; }
-    .btn { @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 border border-neutral-700 bg-neutral-900/70 hover:bg-neutral-800; }
-    .btn-primary { @apply inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium text-black; background: linear-gradient(90deg,#34d399,#60a5fa); }
-    .sectionHead { @apply flex items-end justify-between; }
-    .accentBar { @apply h-1 w-24 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full; }
-    .band { position: relative; }
-    .band:before{ content:""; position:absolute; inset:0; opacity:.16; background:
-      radial-gradient(60% 60% at 20% 10%, #10b981, transparent 60%),
-      radial-gradient(50% 45% at 90% 20%, #3b82f6, transparent 60%);
-      pointer-events:none;
-    }
-    .navlink { @apply px-3 py-1.5 rounded-lg text-sm border border-transparent hover:border-neutral-700; }
-    .navlink.active { @apply bg-emerald-500/15 border-emerald-500/30; }
-    .pill { @apply inline-flex items-center rounded-full border border-neutral-700 px-2 py-0.5 text-[10px] uppercase tracking-wide; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Omar Tamer | Red Team & Penetration Testing Specialist</title>
+<meta name="description" content="Portfolio of Omar Tamer; Red Team & Penetration Testing Specialist; Exam Item Writer; speaker; writeups; tools; talks; and contact." />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root { color-scheme: dark; }
+.container { max-width: 1140px; }
+.navlink { transition: all .2s ease; }
+</style>
 </head>
 <body class="bg-black text-neutral-200">
-  <!-- Skip link for accessibility -->
-  <a href="#home" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 bg-neutral-900 text-neutral-100 px-3 py-2 rounded-lg border border-neutral-700">Skip to content</a>
-
-  <!-- Header -->
-  <header id="siteHeader" class="sticky top-0 z-50 border-b border-neutral-900 bg-black/70 backdrop-blur">
+<!-- Header -->
+<header class="sticky top-0 z-50 border-b border-neutral-900 bg-black/70 backdrop-blur">
 <div class="mx-auto container px-4 py-4">
 <div class="flex items-center justify-between flex-wrap gap-3">
 <a href="/index.html" class="font-semibold tracking-wide text-lg">OMAR TAMER</a>
-<button id="navToggle" class="md:hidden px-3 py-2 rounded-lg border border-neutral-700">Menu</button>
+<button id="navToggle" class="md:hidden px-3 py-2 rounded-lg border border-neutral-700 text-sm">Menu</button>
 </div>
-<nav id="navBar" class="nav-container hidden md:flex">
-<a class="navlink" href="#about">About</a>
-<a class="navlink" href="#highlights">Highlights</a>
-<a class="navlink" href="#talks">Talks</a>
-<a class="navlink" href="/writeups.html">Writeups</a>
-<a class="navlink" href="/socials.html">Socials</a>
-<a class="navlink" href="#projects">Projects</a>
-<a class="navlink" href="#certs">Certifications</a>
-<a class="navlink" href="#contact">Contact</a>
+<nav id="navBar" class="hidden md:flex flex-wrap items-center justify-center gap-6 py-3 text-sm">
+<a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#about">About</a>
+<a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#highlights">Highlights</a>
+<a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#talks">Talks</a>
+<a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="/writeups.html">Writeups</a>
+<a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="/socials.html">Socials</a>
+<a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#projects">Projects</a>
+<a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#certs">Certifications</a>
+<a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#contact">Contact</a>
 </nav>
+<div id="mobileNav" class="hidden md:hidden mt-3 grid gap-2 text-sm">
+<a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#about">About</a>
+<a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#highlights">Highlights</a>
+<a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#talks">Talks</a>
+<a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="/writeups.html">Writeups</a>
+<a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="/socials.html">Socials</a>
+<a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#projects">Projects</a>
+<a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#certs">Certifications</a>
+<a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#contact">Contact</a>
+</div>
 </div>
 </header>
+
+
+<script>
 
   <!-- Hero -->
   <section id="home" class="band border-b border-neutral-900">

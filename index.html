@@ -116,87 +116,59 @@
       <div class="h-1 w-24 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full"></div>
     </div>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <!-- LPT Master (EC-Council) -->
-      <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-5 shadow-lg hover:shadow-xl transition">
-        <div class="flex items-center gap-4">
-          <div class="relative h-12 w-12 flex items-center justify-center rounded-xl bg-white">
-            <img src="/assets/logos/ec-council.svg" alt="EC-Council logo" class="h-8 w-8 object-contain"
-                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-xs font-bold text-black">EC</span>
+    <div class="grid gap-8 lg:grid-cols-2">
+      <!-- EC-Council Certifications Group -->
+      <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-6 shadow-lg hover:shadow-xl transition">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-12 w-12 flex items-center justify-center rounded-xl bg-white">
+            <img src="/assets/logos/ec-council.svg" alt="EC-Council logo" class="h-8 w-8 object-contain">
           </div>
           <div>
-            <div class="text-neutral-400 text-xs">Issued by</div>
-            <div class="text-xl font-extrabold">EC‑Council</div>
-            <div class="text-sm text-neutral-200">LPT (Master)</div>
+            <div class="text-xl font-extrabold text-neutral-100">EC-Council</div>
+            <p class="text-sm text-neutral-400">Leading certifications in ethical hacking and penetration testing</p>
+          </div>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-neutral-800 bg-neutral-950/70 p-4 text-center hover:bg-neutral-900 transition">
+            <h3 class="font-semibold text-lg">LPT (Master)</h3>
+          </div>
+          <div class="rounded-xl border border-neutral-800 bg-neutral-950/70 p-4 text-center hover:bg-neutral-900 transition">
+            <h3 class="font-semibold text-lg">CPENT</h3>
+          </div>
+          <div class="rounded-xl border border-neutral-800 bg-neutral-950/70 p-4 text-center hover:bg-neutral-900 transition sm:col-span-2">
+            <h3 class="font-semibold text-lg">CEH Master</h3>
           </div>
         </div>
       </div>
 
-      <!-- CPENT (EC-Council) -->
-      <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-5 shadow-lg hover:shadow-xl transition">
-        <div class="flex items-center gap-4">
-          <div class="relative h-12 w-12 flex items-center justify-center rounded-xl bg-white">
-            <img src="/assets/logos/ec-council.svg" alt="EC-Council logo" class="h-8 w-8 object-contain"
-                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-xs font-bold text-black">EC</span>
+      <!-- Other Certifications -->
+      <div class="grid gap-6">
+        <!-- INE Security -->
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-5 shadow-lg hover:shadow-xl transition">
+          <div class="flex items-center gap-4">
+            <div class="h-12 w-12 flex items-center justify-center rounded-xl bg-white">
+              <img src="/assets/logos/ine.svg" alt="INE Security logo" class="h-8 w-8 object-contain">
+            </div>
+            <div>
+              <div class="text-xl font-extrabold text-neutral-100">INE Security</div>
+              <p class="text-sm text-neutral-400">eJPT – Junior Penetration Tester</p>
+            </div>
           </div>
-          <div>
-            <div class="text-neutral-400 text-xs">Issued by</div>
-            <div class="text-xl font-extrabold">EC‑Council</div>
-            <div class="text-sm text-neutral-200">CPENT</div>
+        </div>
+
+        <!-- OpenEDG Python Institute -->
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-5 shadow-lg hover:shadow-xl transition">
+          <div class="flex items-center gap-4">
+            <div class="h-12 w-12 flex items-center justify-center rounded-xl bg-white">
+              <img src="/assets/logos/openedg.svg" alt="OpenEDG logo" class="h-8 w-8 object-contain">
+            </div>
+            <div>
+              <div class="text-xl font-extrabold text-neutral-100">OpenEDG Python Institute</div>
+              <p class="text-sm text-neutral-400">PCEP – Certified Entry-Level Python Programmer</p>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- CEH Master (EC-Council) -->
-      <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-5 shadow-lg hover:shadow-xl transition">
-        <div class="flex items-center gap-4">
-          <div class="relative h-12 w-12 flex items-center justify-center rounded-xl bg-white">
-            <img src="/assets/logos/ec-council.svg" alt="EC-Council logo" class="h-8 w-8 object-contain"
-                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-xs font-bold text-black">EC</span>
-          </div>
-          <div>
-            <div class="text-neutral-400 text-xs">Issued by</div>
-            <div class="text-xl font-extrabold">EC‑Council</div>
-            <div class="text-sm text-neutral-200">CEH Master</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- eJPT (INE Security) -->
-      <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-5 shadow-lg hover:shadow-xl transition">
-        <div class="flex items-center gap-4">
-          <div class="relative h-12 w-12 flex items-center justify-center rounded-xl bg-white">
-            <img src="/assets/logos/ine.svg" alt="INE Security logo" class="h-8 w-8 object-contain"
-                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-xs font-bold text-black">INE</span>
-          </div>
-          <div>
-            <div class="text-neutral-400 text-xs">Issued by</div>
-            <div class="text-xl font-extrabold">INE Security</div>
-            <div class="text-sm text-neutral-200">eJPT</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PCEP (OpenEDG Python Institute) -->
-      <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-5 shadow-lg hover:shadow-xl transition">
-        <div class="flex items-center gap-4">
-          <div class="relative h-12 w-12 flex items-center justify-center rounded-xl bg-white">
-            <img src="/assets/logos/openedg.svg" alt="OpenEDG logo" class="h-8 w-8 object-contain"
-                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-xs font-bold text-black">PY</span>
-          </div>
-          <div>
-            <div class="text-neutral-400 text-xs">Issued by</div>
-            <div class="text-xl font-extrabold">OpenEDG Python Institute</div>
-            <div class="text-sm text-neutral-200">PCEP</div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>

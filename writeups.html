@@ -8,15 +8,23 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root { color-scheme: dark; }
-    .container { max-width: 1100px; }
+    .container { max-width: 1140px; }
     .card { @apply bg-neutral-900/70 border border-neutral-800 rounded-2xl p-6 shadow-lg transition duration-200; }
     .card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.45); }
     .link { @apply underline decoration-neutral-600 underline-offset-4 hover:decoration-neutral-400; }
-    .tab { @apply px-3 py-1.5 rounded-lg text-sm border border-transparent cursor-pointer; }
-    .tab.active { @apply bg-emerald-500/20 border-emerald-500/30; }
+    .sectionHead { @apply flex items-end justify-between; }
+    .accentBar { @apply h-1 w-24 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full; }
+
+    /* BOXED TABS (centered, non-sticky) */
+    .tabs-shell { @apply flex justify-center mt-6; }
+    .tabs-card { @apply bg-neutral-900/80 border border-neutral-800 rounded-2xl shadow-xl p-2 w-full max-w-xl; }
+    .tabs { @apply grid grid-cols-2 gap-2; }
+    .tab-btn { @apply w-full rounded-xl px-6 py-3 text-base md:text-lg font-semibold border border-neutral-800 bg-neutral-950/60 hover:bg-neutral-900 transition; }
+    .tab-active { @apply text-black border-transparent; background: linear-gradient(90deg,#34d399,#60a5fa); }
   </style>
 </head>
 <body class="bg-black text-neutral-200">
+  <!-- Header -->
   <header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-neutral-900">
     <div class="mx-auto container px-4 py-4 flex items-center justify-between">
       <a href="/index.html" class="font-semibold tracking-wide">OMAR TAMER</a>
@@ -33,26 +41,39 @@
     </div>
   </header>
 
-  <main class="mx-auto container px-4 py-16">
-    <div class="flex items-center gap-2 text-sm">
-      <a class="tab active" id="tab-ctf">CTF Writeups</a>
-      <a class="tab" id="tab-articles">Technical Articles</a>
+  <main class="mx-auto container px-4 py-10 md:py-16">
+    <div class="sectionHead">
+      <h1 class="text-3xl md:text-4xl font-extrabold">Writeups</h1>
+      <div class="accentBar"></div>
+    </div>
+
+    <!-- Centered BOXED Tabs -->
+    <div class="tabs-shell">
+      <div class="tabs-card" role="tablist" aria-label="Writeups Tabs">
+        <div class="tabs">
+          <button id="tabCtf" class="tab-btn tab-active" role="tab" aria-selected="true" aria-controls="panelCtf">🧩 CTF Writeups</button>
+          <button id="tabArticles" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelArticles">📚 Technical Articles</button>
+        </div>
+      </div>
     </div>
 
     <!-- CTF grid -->
-    <section id="ctf" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <section id="panelCtf" role="tabpanel" aria-labelledby="tabCtf" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <article class="card">
         <h3 class="font-semibold">TryHackMe — WGE LCTF</h3>
         <p class="mt-2 text-neutral-300">Web exploitation; enumeration; privilege escalation. A clean walkthrough with screenshots and commands.</p>
-        <div class="mt-3"><a class="link text-sm" href="/wgel.html" target="_blank" rel="noopener">Read full writeup</a></div>
+        <div class="mt-3 flex gap-3">
+          <a class="link text-sm" href="/wgel.html" target="_blank" rel="noopener">Read full writeup</a>
+          <a class="link text-sm" href="https://tryhackme.com/p/OmarTamer0" target="_blank" rel="noopener">THM Profile</a>
+        </div>
       </article>
     </section>
 
     <!-- Articles grid -->
-    <section id="articles" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+    <section id="panelArticles" role="tabpanel" aria-labelledby="tabArticles" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
       <article class="card">
         <h3 class="font-semibold">How I became a CEH Master at 21; the beginning of my offensive security path</h3>
-        <p class="mt-2 text-neutral-300">Personal journey and lessons learned while pursuing certifications and hands-on practice.</p>
+        <p class="mt-2 text-neutral-300">Personal journey and lessons learned while pursuing certifications and hands‑on practice.</p>
         <div class="mt-3"><a class="link text-sm" href="https://medium.com/@OmarTamer0/how-i-became-a-ceh-master-at-21-the-beginning-of-my-offensive-security-path-1fd7c7199b62" target="_blank" rel="noopener">Read on Medium</a></div>
       </article>
       <article class="card">
@@ -66,17 +87,31 @@
   <footer class="border-t border-neutral-900"><div class="mx-auto container px-4 py-10 text-sm text-neutral-500">© <span id="year"></span> Omar Tamer; All rights reserved.</div></footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    const tabCtf = document.getElementById('tab-ctf');
-    const tabArticles = document.getElementById('tab-articles');
-    const ctf = document.getElementById('ctf');
-    const articles = document.getElementById('articles');
+
+    const tabCtf = document.getElementById('tabCtf');
+    const tabArticles = document.getElementById('tabArticles');
+    const panelCtf = document.getElementById('panelCtf');
+    const panelArticles = document.getElementById('panelArticles');
+
     function activate(which){
-      if(which==='ctf'){ ctf.classList.remove('hidden'); articles.classList.add('hidden'); tabCtf.classList.add('active'); tabArticles.classList.remove('active'); }
-      else { articles.classList.remove('hidden'); ctf.classList.add('hidden'); tabArticles.classList.add('active'); tabCtf.classList.remove('active'); }
+      if(which==='ctf'){
+        panelCtf.classList.remove('hidden');
+        panelArticles.classList.add('hidden');
+        tabCtf.classList.add('tab-active');
+        tabArticles.classList.remove('tab-active');
+        tabCtf.setAttribute('aria-selected','true');
+        tabArticles.setAttribute('aria-selected','false');
+      } else {
+        panelArticles.classList.remove('hidden');
+        panelCtf.classList.add('hidden');
+        tabArticles.classList.add('tab-active');
+        tabCtf.classList.remove('tab-active');
+        tabArticles.setAttribute('aria-selected','true');
+        tabCtf.setAttribute('aria-selected','false');
+      }
     }
     tabCtf.addEventListener('click',()=>activate('ctf'));
     tabArticles.addEventListener('click',()=>activate('articles'));
   </script>
 </body>
 </html>
-

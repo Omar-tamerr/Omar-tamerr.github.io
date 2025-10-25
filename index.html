@@ -4,48 +4,44 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Omar Tamer | Red Team & Penetration Testing Specialist</title>
-  <meta name="description" content="Portfolio of Omar Tamer; Red Team & Penetration Testing Specialist; EC‑Council Exam Item Writer; speaker; writeups; tools; talks; and contact." />
-  <!-- Tailwind CSS via CDN -->
+  <meta name="description" content="Portfolio of Omar Tamer; Red Team & Penetration Testing Specialist; Exam Item Writer; speaker; writeups; tools; talks; and contact." />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root { color-scheme: dark; }
-    .grid-card { @apply bg-neutral-900/60 border border-neutral-800 rounded-2xl p-6 backdrop-blur shadow-lg transition transform hover:-translate-y-0.5 hover:shadow-xl; }
+    .container { max-width: 1100px; }
+    .card { @apply bg-neutral-900/70 border border-neutral-800 rounded-2xl p-6 shadow-lg transition duration-200; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.45); }
     .chip { @apply inline-flex items-center rounded-full border border-neutral-700 px-3 py-1 text-xs text-neutral-200; }
-    .link { @apply underline decoration-neutral-600 hover:decoration-neutral-400; }
+    .link { @apply underline decoration-neutral-600 underline-offset-4 hover:decoration-neutral-400; }
+    .btn { @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 border border-neutral-700 bg-neutral-900/70 hover:bg-neutral-800; }
+    .tab { @apply px-3 py-1.5 rounded-lg text-sm border border-transparent; }
+    .tab.active { @apply bg-emerald-500/20 border-emerald-500/30; }
   </style>
 </head>
-<body class="bg-black text-neutral-200 selection:bg-emerald-500/30 selection:text-emerald-100">
-  <!-- Top bar -->
-  <header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="#home" class="font-semibold tracking-wide">OMAR TAMER</a>
+<body class="bg-black text-neutral-200">
+  <header class="sticky top-0 z-50 border-b border-neutral-900 bg-black/70 backdrop-blur">
+    <div class="mx-auto container px-4 py-4 flex items-center justify-between">
+      <a href="/index.html" class="font-semibold tracking-wide">OMAR TAMER</a>
       <nav class="hidden md:flex gap-6 text-sm">
         <a class="hover:text-white/90" href="#about">About</a>
         <a class="hover:text-white/90" href="#highlights">Highlights</a>
         <a class="hover:text-white/90" href="#talks">Talks</a>
-        <a class="hover:text-white/90" href="#writeups">Writeups</a>
+        <a class="hover:text-white/90" href="/writeups.html">Writeups</a>
+        <a class="hover:text-white/90" href="/socials.html">Socials</a>
         <a class="hover:text-white/90" href="#projects">Projects</a>
         <a class="hover:text-white/90" href="#certs">Certifications</a>
         <a class="hover:text-white/90" href="#contact">Contact</a>
       </nav>
-      <div class="flex items-center gap-2">
-        <a href="https://github.com/Omar-tamerr" target="_blank" rel="noopener" class="chip">GitHub</a>
-        <a href="https://medium.com/@OmarTamer0" target="_blank" rel="noopener" class="chip">Medium</a>
-      </div>
+      <a class="md:hidden btn" href="#nav">Menu</a>
     </div>
   </header>
 
-  <!-- Hero -->
   <section id="home" class="border-b border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-20 lg:py-28 grid md:grid-cols-12 gap-10 items-center">
-      <!-- Left copy -->
-      <div class="md:col-span-8">
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-          Red Team & Penetration Testing Specialist
-        </h1>
-        <p class="mt-4 text-neutral-300">
-          EC‑Council Exam Item Writer; top ranked CTF player; creator of open‑source security tools; speaker at EC‑Council CyberTalks. Building proactive defense by thinking like an attacker.
-        </p>
+    <div class="mx-auto container px-4 py-16 grid md:grid-cols-12 gap-10 items-center">
+      <div class="md:col-span-7">
+        <p class="text-sm text-neutral-400">Penetration Testing; Red Team; AD; Cloud; Web</p>
+        <h1 class="mt-2 text-4xl lg:text-5xl font-extrabold leading-tight">Red Team & Penetration Testing Specialist</h1>
+        <p class="mt-4 text-neutral-300">Exam Item Writer at EC‑Council; top ranked CTF competitor; creator of open‑source security tools; CyberTalks speaker for EC‑Council University. I build proactive defense by thinking like an attacker.</p>
         <div class="mt-6 flex flex-wrap gap-3">
           <span class="chip">CEH</span>
           <span class="chip">CPENT</span>
@@ -54,85 +50,44 @@
           <span class="chip">PCEP</span>
         </div>
         <div class="mt-8 flex gap-3">
-          <a class="chip" href="#talks">Talks</a>
-          <a class="chip" href="#projects">Projects</a>
-          <a class="chip" href="#writeups">Writeups</a>
+          <a class="btn" href="/writeups.html">Writeups</a>
+          <a class="btn" href="/socials.html">Socials</a>
+          <a class="btn" href="#projects">Projects</a>
         </div>
       </div>
-
-      <!-- Right badges -->
-      <div class="md:col-span-4 md:justify-self-end">
-        <div class="grid grid-cols-2 gap-4 md:mt-1">
-          <!-- THM -->
-          <div class="relative rounded-2xl p-[1px] bg-gradient-to-br from-emerald-400/50 via-white/10 to-transparent">
-            <div class="rounded-2xl h-full w-full bg-white/5 border border-white/10 px-4 py-3 text-center">
-              <div class="text-xs text-slate-400">TryHackMe</div>
-              <div class="mt-1 text-xl font-bold">#190</div>
-              <div class="text-xs text-slate-400">Top contributor</div>
-            </div>
-          </div>
-          <!-- CyberTalents -->
-          <div class="relative rounded-2xl p-[1px] bg-gradient-to-br from-emerald-400/50 via-white/10 to-transparent">
-            <div class="rounded-2xl h-full w-full bg-white/5 border border-white/10 px-4 py-3 text-center">
-              <div class="text-xs text-slate-400">CyberTalents</div>
-              <div class="mt-1 text-xl font-bold">#4</div>
-              <div class="text-xs text-slate-400">Worldwide</div>
-            </div>
-          </div>
-          <!-- HTB -->
-          <div class="relative rounded-2xl p-[1px] bg-gradient-to-br from-emerald-400/50 via-white/10 to-transparent">
-            <div class="rounded-2xl h-full w-full bg-white/5 border border-white/10 px-4 py-3 text-center">
-              <div class="text-xs text-slate-400">Hack The Box</div>
-              <div class="mt-1 text-xl font-bold">#40</div>
-              <div class="text-xs text-slate-400">Egypt</div>
-            </div>
-          </div>
-          <div></div>
-        </div>
-      </div>
-
-      <!-- Latest highlight card under hero copy (full width on small) -->
-      <div class="md:col-span-12">
-        <div class="grid-card">
+      <div class="md:col-span-5 space-y-3">
+        <div class="card">
           <p class="text-sm text-neutral-400">Latest</p>
           <h3 class="mt-1 text-xl font-semibold">CyberTalks Speaker Recognition | EC‑Council University</h3>
-          <p class="mt-2 text-neutral-300">Certificate of Appreciation for the session; Proactive Security; The Strategic Role of Ethical Hacking; October 17; 2025.</p>
+          <p class="mt-2 text-neutral-300">Certificate of Appreciation; Proactive Security; The Strategic Role of Ethical Hacking; October 17; 2025.</p>
           <div class="mt-3 flex flex-wrap gap-2">
             <a class="link text-sm" href="https://www.eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking/" target="_blank" rel="noopener">Session page</a>
-            <a class="link text-sm" href="/writeups.html" target="_blank" rel="noopener">Writeups</a>
             <a class="link text-sm" href="https://medium.com/@OmarTamer0" target="_blank" rel="noopener">Medium</a>
-            <a class="link text-sm" href="/socials.html" target="_blank" rel="noopener">Rankings</a>
           </div>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="card text-center py-4"><div class="text-xs text-slate-400">TryHackMe</div><div class="mt-1 text-2xl font-bold">#190</div></div>
+          <div class="card text-center py-4"><div class="text-xs text-slate-400">CyberTalents</div><div class="mt-1 text-2xl font-bold">#4</div></div>
+          <div class="card text-center py-4"><div class="text-xs text-slate-400">Hack The Box</div><div class="mt-1 text-2xl font-bold">#40</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="border-b border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-16">
-      <h2 class="text-2xl font-bold">About</h2>
-      <p class="mt-4 text-neutral-300 leading-relaxed">
-        I am Omar Tamer; a penetration tester focused on Active Directory; cloud; and web. I design realistic attack chains; build and maintain open‑source tools; and turn lessons from labs; CTFs; and client simulations into clear guidance for defenders. I contribute as an <strong>EC‑Council Exam Item Writer</strong>; helping keep certifications practical and up to date. I also publish technical articles and writeups on <a class="link" href="https://medium.com/@OmarTamer0" target="_blank" rel="noopener">Medium</a> and on my <a class="link" href="/writeups.html">writeups page</a>.
-      </p>
-    </div>
-  </section>
-
-  <!-- Highlights -->
   <section id="highlights" class="border-b border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="mx-auto container px-4 py-16">
       <h2 class="text-2xl font-bold">Highlights</h2>
       <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="grid-card">
+        <div class="card">
           <h3 class="font-semibold">Speaker; EC‑Council CyberTalks</h3>
           <p class="mt-2 text-neutral-300">Proactive Security; Strategic Role of Ethical Hacking; demo driven content on AD; IoT; and OPSEC‑safe workflows.</p>
           <a class="link text-sm" target="_blank" rel="noopener" href="https://www.eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking/">EC‑Council University session</a>
         </div>
-        <div class="grid-card">
+        <div class="card">
           <h3 class="font-semibold">Exam Item Writer — EC‑Council</h3>
           <p class="mt-2 text-neutral-300">Volunteer contributor to advanced cybersecurity certification content; scenario driven; quality focused.</p>
         </div>
-        <div class="grid-card">
+        <div class="card">
           <h3 class="font-semibold">CTF & Labs</h3>
           <p class="mt-2 text-neutral-300">Top rankings on TryHackMe; CyberTalents; Hack The Box; chains like PKINIT; AD CS abuse; Docker RCE; and more.</p>
         </div>
@@ -140,80 +95,38 @@
     </div>
   </section>
 
-  <!-- Talks -->
   <section id="talks" class="border-b border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="mx-auto container px-4 py-16">
       <h2 class="text-2xl font-bold">Talks</h2>
-      <div class="mt-6 space-y-6">
-        <div class="grid-card">
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="card">
           <div class="flex items-center justify-between gap-4 flex-wrap">
             <h3 class="text-lg font-semibold">Proactive Security; The Strategic Role of Ethical Hacking</h3>
             <span class="chip">Oct 17; 2025</span>
           </div>
-          <p class="mt-2 text-neutral-300">EC‑Council CyberTalks; covered attacker mindset; AD attack paths; IoT; and practical defense takeaways. Session page; eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking</p>
+          <p class="mt-2 text-neutral-300">EC‑Council CyberTalks; covered attacker mindset; AD attack paths; IoT; and practical defense takeaways.</p>
           <div class="mt-3 flex gap-3">
-            <a class="link text-sm" target="_blank" rel="noopener" href="https://www.eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking/">Event page</a>
+            <a class="btn" target="_blank" rel="noopener" href="https://www.eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking/">Event page</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
- <!-- Writeups -->
-<section id="writeups" class="border-b border-neutral-900">
-  <div class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-2xl font-bold">Writeups</h2>
-    <p class="mt-3 text-neutral-300">I publish technical articles and essays on <a class="link" href="https://medium.com/@OmarTamer0" target="_blank" rel="noopener">Medium</a>. Below are two of my recent posts.</p>
-    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <article class="grid-card">
-        <h3 class="font-semibold">How I became a CEH Master at 21; the beginning of my offensive security path</h3>
-        <p class="mt-2 text-neutral-300">Personal career journey and lessons learned while pursuing certifications and hands-on practice.</p>
-        <div class="mt-3">
-          <a class="link text-sm" href="https://medium.com/@OmarTamer0/how-i-became-a-ceh-master-at-21-the-beginning-of-my-offensive-security-path-1fd7c7199b62" target="_blank" rel="noopener">Read on Medium</a>
-        </div>
-      </article>
-
-      <article class="grid-card">
-        <h3 class="font-semibold">Why I built OTSec; offensive security in OT/IoT environments</h3>
-        <p class="mt-2 text-neutral-300">Motivation and design goals behind OTSec; approaches for safe testing of OT and IoT systems.</p>
-        <div class="mt-3">
-          <a class="link text-sm" href="https://medium.com/@OmarTamer0/why-i-built-otsec-offensive-security-in-ot-iot-environments-afeeb28c34bb" target="_blank" rel="noopener">Read on Medium</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-  <!-- Projects -->
   <section id="projects" class="border-b border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="mx-auto container px-4 py-16">
       <h2 class="text-2xl font-bold">Projects</h2>
       <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="grid-card">
-          <h3 class="font-semibold">OTSec</h3>
-          <p class="mt-2 text-neutral-300">Offensive OT/IoT Security Toolkit; modules for discovery; fuzzing; and safety‑first testing.</p>
-          <a class="link text-sm" target="_blank" rel="noopener" href="https://github.com/Omar-tamerr">Repo hub</a>
-        </div>
-        <div class="grid-card">
-          <h3 class="font-semibold">PacketWhiz</h3>
-          <p class="mt-2 text-neutral-300">Network Forensics Analyzer; quick pivots; rich CLI tables; and PCAP insights.</p>
-          <a class="link text-sm" target="_blank" rel="noopener" href="https://github.com/Omar-tamerr">Repo hub</a>
-        </div>
-        <div class="grid-card">
-          <h3 class="font-semibold">BruteVector</h3>
-          <p class="mt-2 text-neutral-300">GUI brute‑force tool concept; HTTP form; SSH; FTP; SMB; wordlist generation and resume features.</p>
-          <a class="link text-sm" target="_blank" rel="noopener" href="https://github.com/Omar-tamerr">Repo hub</a>
-        </div>
+        <div class="card"><h3 class="font-semibold">OTSec</h3><p class="mt-2 text-neutral-300">Offensive OT/IoT Security Toolkit; modules for discovery; fuzzing; and safety‑first testing.</p><a class="link text-sm" target="_blank" rel="noopener" href="https://github.com/Omar-tamerr">Repo hub</a></div>
+        <div class="card"><h3 class="font-semibold">PacketWhiz</h3><p class="mt-2 text-neutral-300">Network Forensics Analyzer; quick pivots; rich CLI tables; and PCAP insights.</p><a class="link text-sm" target="_blank" rel="noopener" href="https://github.com/Omar-tamerr">Repo hub</a></div>
+        <div class="card"><h3 class="font-semibold">BruteVector</h3><p class="mt-2 text-neutral-300">GUI brute‑force tool concept; HTTP form; SSH; FTP; SMB; wordlist generation and resume features.</p><a class="link text-sm" target="_blank" rel="noopener" href="https://github.com/Omar-tamerr">Repo hub</a></div>
       </div>
     </div>
   </section>
 
-  <!-- Certifications -->
   <section id="certs" class="border-b border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="mx-auto container px-4 py-16">
       <h2 class="text-2xl font-bold">Certifications</h2>
-    
       <ul class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-neutral-300">
         <li class="chip">EC‑Council CEH</li>
         <li class="chip">EC‑Council CPENT</li>
@@ -224,9 +137,8 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact">
-    <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="mx-auto container px-4 py-16">
       <h2 class="text-2xl font-bold">Contact</h2>
       <div class="mt-4 space-y-2 text-neutral-300">
         <p>Email; <a class="link" href="mailto:omartamerrr3@gmail.com">omartamerrr3@gmail.com</a></p>
@@ -237,15 +149,8 @@
     </div>
   </section>
 
-  <footer class="border-t border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-10 text-sm text-neutral-500">
-      © <span id="year"></span> Omar Tamer; All rights reserved.
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <footer class="border-t border-neutral-900"><div class="mx-auto container px-4 py-10 text-sm text-neutral-500">© <span id="year"></span> Omar Tamer; All rights reserved.</div></footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
 

@@ -3,25 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Omar Tamer | Socials & Rankings</title>
-  <meta name="description" content="Social links; rankings; and public profiles for Omar Tamer." />
+  <title>Omar Tamer | Writeups</title>
+  <meta name="description" content="CTF and technical writeups by Omar Tamer; cybersecurity and red team insights." />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root { color-scheme: dark; }
-    .card { @apply bg-neutral-900/60 border border-neutral-800 rounded-2xl p-6 backdrop-blur shadow-lg transition transform hover:-translate-y-0.5 hover:shadow-xl; }
-    .link { @apply underline decoration-neutral-600 hover:decoration-neutral-400; }
-    .pill { @apply inline-flex items-center rounded-full border border-neutral-700 px-2 py-0.5 text-[10px] uppercase tracking-wide; }
+    .container { max-width: 1120px; }
+    .card { @apply bg-neutral-900/70 border border-neutral-800 rounded-2xl p-6 shadow-lg transition duration-200; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.45); }
+    .link { @apply underline decoration-neutral-600 underline-offset-4 hover:decoration-neutral-400; }
+    .tabs { @apply relative inline-flex items-center bg-neutral-900/60 border border-neutral-800 rounded-2xl p-1; }
+    .tab { @apply relative z-10 px-4 py-2 text-sm rounded-xl cursor-pointer; }
+    .tab-active { @apply text-black; }
+    .tab-indicator { @apply absolute top-1 bottom-1 w-1/2 rounded-xl bg-emerald-400; left: 0; transition: left .25s ease; }
   </style>
 </head>
 <body class="bg-black text-neutral-200">
   <header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div class="mx-auto container px-4 py-4 flex items-center justify-between">
       <a href="/index.html" class="font-semibold tracking-wide">OMAR TAMER</a>
       <nav class="hidden md:flex gap-6 text-sm">
         <a class="hover:text-white/90" href="/index.html#about">About</a>
         <a class="hover:text-white/90" href="/index.html#highlights">Highlights</a>
         <a class="hover:text-white/90" href="/index.html#talks">Talks</a>
-        <a class="hover:text-white/90" href="/index.html#writeups">Writeups</a>
+        <a class="hover:text-white/90" href="/writeups.html">Writeups</a>
+        <a class="hover:text-white/90" href="/socials.html">Socials</a>
         <a class="hover:text-white/90" href="/index.html#projects">Projects</a>
         <a class="hover:text-white/90" href="/index.html#certs">Certifications</a>
         <a class="hover:text-white/90" href="/index.html#contact">Contact</a>
@@ -29,70 +35,66 @@
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-extrabold">Socials & Rankings</h1>
-    <p class="mt-3 text-neutral-300">Follow my work; articles; and CTF progress. I write on <a class="link" href="https://medium.com/@OmarTamer0" target="_blank" rel="noopener">Medium</a> and share lab notes and writeups on <a class="link" href="/writeups.html">my site</a>.</p>
-
-    <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/omar-tamer-1a986b2a7/" target="_blank" rel="noopener" class="card block">
-        <div class="text-xs text-slate-400">LinkedIn</div>
-        <div class="mt-1 text-lg font-semibold">/in/omar-tamer-1a986b2a7</div>
-        <p class="mt-1 text-sm text-slate-300">Talks; achievements; and community updates.</p>
-      </a>
-
-      <!-- GitHub -->
-      <a href="https://github.com/Omar-tamerr" target="_blank" rel="noopener" class="card block">
-        <div class="text-xs text-slate-400">GitHub</div>
-        <div class="mt-1 text-lg font-semibold">@Omar-tamerr</div>
-        <p class="mt-1 text-sm text-slate-300">Open‑source tools; labs; utilities.</p>
-      </a>
-
-      <!-- Medium -->
-      <a href="https://medium.com/@OmarTamer0" target="_blank" rel="noopener" class="card block">
-        <div class="text-xs text-slate-400">Medium</div>
-        <div class="mt-1 text-lg font-semibold">@OmarTamer0</div>
-        <p class="mt-1 text-sm text-slate-300">I write in‑depth articles; red‑team insights; and technical breakdowns.</p>
-      </a>
-
-      <!-- TryHackMe -->
-      <a href="https://tryhackme.com/p/OmarTamer0" target="_blank" rel="noopener" class="card block">
-        <div class="text-xs text-slate-400">TryHackMe</div>
-        <div class="mt-1 text-lg font-semibold">Rank #190 <span class="pill ml-1">Top 0.1%</span></div>
-        <p class="mt-1 text-sm text-slate-300">Hands‑on labs and practical challenges.</p>
-      </a>
-
-      <!-- CyberTalents -->
-      <a href="https://cybertalents.com/members/OmarTamer0/profile" target="_blank" rel="noopener" class="card block">
-        <div class="text-xs text-slate-400">CyberTalents</div>
-        <div class="mt-1 text-lg font-semibold">#4 Worldwide</div>
-        <p class="mt-1 text-sm text-slate-300">CTF competitions and global rankings.</p>
-      </a>
-
-      <!-- Hack The Box -->
-      <a href="https://app.hackthebox.com/profile" target="_blank" rel="noopener" class="card block">
-        <div class="text-xs text-slate-400">Hack The Box</div>
-        <div class="mt-1 text-lg font-semibold">#40 Egypt</div>
-        <p class="mt-1 text-sm text-slate-300">Labs; tracks; and writeups.</p>
-      </a>
-
-      <!-- EC‑Council CyberTalks link -->
-      <a href="https://www.eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking/" target="_blank" rel="noopener" class="card block">
-        <div class="text-xs text-slate-400">CyberTalks — EC‑Council University</div>
-        <div class="mt-1 text-lg font-semibold">Proactive Security; Strategic Role of Ethical Hacking</div>
-        <p class="mt-1 text-sm text-slate-300">Session page; certificate of appreciation as speaker; Oct 17; 2025.</p>
-      </a>
+  <main class="mx-auto container px-4 py-16">
+    <!-- Prominent Tabs -->
+    <div class="flex items-center justify-start">
+      <div class="tabs" role="tablist" aria-label="Writeups Tabs">
+        <div id="tabIndicator" class="tab-indicator"></div>
+        <button id="tabCtf" class="tab tab-active" role="tab" aria-selected="true" aria-controls="panelCtf">CTF Writeups</button>
+        <button id="tabArticles" class="tab" role="tab" aria-selected="false" aria-controls="panelArticles">Technical Articles</button>
+      </div>
     </div>
+
+    <!-- CTF grid -->
+    <section id="panelCtf" role="tabpanel" aria-labelledby="tabCtf" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="card">
+        <h3 class="font-semibold">TryHackMe — WGE LCTF</h3>
+        <p class="mt-2 text-neutral-300">Web exploitation; enumeration; privilege escalation. A clean walkthrough with screenshots and commands.</p>
+        <div class="mt-3"><a class="link text-sm" href="/wgel.html" target="_blank" rel="noopener">Read full writeup</a></div>
+      </article>
+    </section>
+
+    <!-- Articles grid -->
+    <section id="panelArticles" role="tabpanel" aria-labelledby="tabArticles" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+      <article class="card">
+        <h3 class="font-semibold">How I became a CEH Master at 21; the beginning of my offensive security path</h3>
+        <p class="mt-2 text-neutral-300">Personal journey and lessons learned while pursuing certifications and hands‑on practice.</p>
+        <div class="mt-3"><a class="link text-sm" href="https://medium.com/@OmarTamer0/how-i-became-a-ceh-master-at-21-the-beginning-of-my-offensive-security-path-1fd7c7199b62" target="_blank" rel="noopener">Read on Medium</a></div>
+      </article>
+      <article class="card">
+        <h3 class="font-semibold">Why I built OTSec; offensive security in OT/IoT environments</h3>
+        <p class="mt-2 text-neutral-300">Motivation and design goals; safe testing approaches; and lessons learned.</p>
+        <div class="mt-3"><a class="link text-sm" href="https://medium.com/@OmarTamer0/why-i-built-otsec-offensive-security-in-ot-iot-environments-afeeb28c34bb" target="_blank" rel="noopener">Read on Medium</a></div>
+      </article>
+    </section>
   </main>
 
-  <footer class="border-t border-neutral-900">
-    <div class="max-w-6xl mx-auto px-4 py-10 text-sm text-neutral-500">
-      © <span id="year"></span> Omar Tamer; All rights reserved.
-    </div>
-  </footer>
-
+  <footer class="border-t border-neutral-900"><div class="mx-auto container px-4 py-10 text-sm text-neutral-500">© <span id="year"></span> Omar Tamer; All rights reserved.</div></footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    const tabCtf = document.getElementById('tabCtf');
+    const tabArticles = document.getElementById('tabArticles');
+    const panelCtf = document.getElementById('panelCtf');
+    const panelArticles = document.getElementById('panelArticles');
+    const indicator = document.getElementById('tabIndicator');
+
+    function activate(which){
+      if(which==='ctf'){
+        panelCtf.classList.remove('hidden');
+        panelArticles.classList.add('hidden');
+        tabCtf.classList.add('tab-active');
+        tabArticles.classList.remove('tab-active');
+        indicator.style.left = '4px';
+      } else {
+        panelArticles.classList.remove('hidden');
+        panelCtf.classList.add('hidden');
+        tabArticles.classList.add('tab-active');
+        tabCtf.classList.remove('tab-active');
+        indicator.style.left = 'calc(50% + 4px)';
+      }
+    }
+    tabCtf.addEventListener('click',()=>activate('ctf'));
+    tabArticles.addEventListener('click',()=>activate('articles'));
   </script>
 </body>
 </html>

@@ -1,189 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Omar Tamer | Red Team & Penetration Testing Specialist</title>
-
-<meta name="description" content="Portfolio of Omar Tamer; Red Team & Penetration Testing Specialist; EC-Council Exam Item Writer; speaker; writeups; and projects." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omar Tamer | Red Team & Penetration Tester</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-:root{scroll-behavior:smooth;color-scheme:dark}
-.container{max-width:1200px}
-.glass{background:rgba(15,23,42,.6);backdrop-filter:blur(12px)}
-.card{border:1px solid #1f2933;border-radius:1rem;padding:1.5rem;transition:.25s;background:linear-gradient(145deg,#0b1220,#05080f)}
-.card:hover{transform:translateY(-6px);border-color:#34d399;box-shadow:0 15px 40px rgba(0,0,0,.6)}
-.btn{border:1px solid #374151;padding:.6rem 1.2rem;border-radius:.75rem}
-.btn-primary{background:linear-gradient(90deg,#34d399,#60a5fa);color:#000;font-weight:600;padding:.7rem 1.5rem;border-radius:.75rem}
-.section-title{font-size:1.75rem;font-weight:700}
-.accent{height:3px;width:80px;background:linear-gradient(90deg,#34d399,#60a5fa);border-radius:999px}
-.navlink:hover{color:#34d399}
+:root { scroll-behavior: smooth; }
+
+body {
+  background: radial-gradient(circle at top, #050b1a, #020409 60%);
+}
+
+.neon {
+  text-shadow: 0 0 5px #22d3ee, 0 0 15px #22d3ee;
+}
+
+.neon-border {
+  border: 1px solid #22d3ee55;
+  box-shadow: 0 0 15px #22d3ee22;
+}
+
+.glass {
+  background: rgba(10,15,30,.7);
+  backdrop-filter: blur(10px);
+}
+
+.card {
+  transition: all .3s ease;
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 0 30px #22d3ee55;
+  border-color: #22d3ee;
+}
+
+.scanline {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+}
 </style>
 </head>
 
-<body class="bg-gradient-to-br from-[#05080f] via-[#070b14] to-[#02040a] text-gray-200 font-sans">
+<body class="text-gray-200 scanline">
 
-<!-- HEADER -->
-<header class="fixed top-0 w-full z-50 glass border-b border-gray-800">
-<div class="container mx-auto px-4 py-4 flex justify-between items-center">
-<a href="/index.html" class="text-lg font-bold tracking-wide">OMAR TAMER</a>
+<!-- NAVBAR -->
+<header class="fixed top-0 w-full z-50 glass border-b border-cyan-500/20">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <span class="font-mono text-cyan-400 neon">OMAR_TAMER</span>
 
-<button id="navToggle" class="md:hidden border px-3 py-1 rounded">Menu</button>
-
-<nav id="navBar" class="hidden md:flex gap-6 text-sm">
-<a class="navlink" href="#about">About</a>
-<a class="navlink" href="#highlights">Highlights</a>
-<a class="navlink" href="#talks">Talks</a>
-<a class="navlink" href="/writeups.html">Writeups</a>
-<a class="navlink" href="/socials.html">Socials</a>
-<a class="navlink" href="#projects">Projects</a>
-<a class="navlink" href="#certs">Certifications</a>
-<a class="navlink" href="#contact">Contact</a>
-</nav>
-</div>
-
-<div id="mobileNav" class="hidden md:hidden px-4 pb-4 grid gap-2">
-<a href="#about">About</a>
-<a href="#highlights">Highlights</a>
-<a href="#talks">Talks</a>
-<a href="/writeups.html">Writeups</a>
-<a href="/socials.html">Socials</a>
-<a href="#projects">Projects</a>
-<a href="#certs">Certifications</a>
-<a href="#contact">Contact</a>
-</div>
+    <nav class="hidden md:flex gap-6 text-sm font-mono">
+      <a href="#home" class="hover:text-cyan-400">HOME</a>
+      <a href="#highlights" class="hover:text-cyan-400">HIGHLIGHTS</a>
+      <a href="#talks" class="hover:text-cyan-400">TALKS</a>
+      <a href="#certs" class="hover:text-cyan-400">CERTS</a>
+      <a href="#contact" class="hover:text-cyan-400">CONTACT</a>
+    </nav>
+  </div>
 </header>
 
 <!-- HERO -->
 <section id="home" class="min-h-screen flex items-center justify-center text-center pt-24">
-<div class="container px-4">
-<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight">
-Omar <span class="text-emerald-400">Tamer</span>
-</h1>
+  <div class="max-w-3xl px-6">
 
-<p class="mt-6 text-lg text-gray-400 max-w-2xl mx-auto">
-Red Team & Penetration Testing Specialist<br/>
-EC-Council Exam Item Writer | CyberTalks Speaker | CEH Master | CPENT | LPT (Master)
-</p>
+    <p class="font-mono text-cyan-400 mb-2">> whoami</p>
 
-<div class="mt-10 flex justify-center gap-4">
-<a href="/socials.html" class="btn-primary">View My Profiles</a>
-<a href="#contact" class="btn">Contact Me</a>
-</div>
-</div>
+    <h1 class="text-5xl md:text-6xl font-extrabold neon text-cyan-300">
+      Omar Tamer
+    </h1>
+
+    <p class="mt-6 font-mono text-gray-400">
+      Red Team & Penetration Testing Specialist<br>
+      EC-Council Exam Item Writer | CyberTalks Speaker | CEH Master | CPENT | LPT (Master)
+    </p>
+
+    <div class="mt-10 flex justify-center gap-4">
+      <a href="/socials.html" class="px-6 py-3 rounded-lg neon-border text-cyan-300 font-mono hover:bg-cyan-500/10">
+        ./profiles
+      </a>
+      <a href="#contact" class="px-6 py-3 rounded-lg bg-cyan-500 text-black font-mono hover:bg-cyan-400">
+        contact_me
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- HIGHLIGHTS -->
-<section id="highlights" class="py-20 border-t border-gray-800">
-<div class="container mx-auto px-4">
+<!-- SECTION TEMPLATE -->
+<section id="highlights" class="py-20 border-t border-cyan-500/20">
+<div class="max-w-6xl mx-auto px-4">
 
-<div class="flex justify-between items-center mb-10">
-<h2 class="section-title">Highlights</h2>
-<div class="accent"></div>
-</div>
+<h2 class="text-3xl font-mono text-cyan-400 neon mb-10">[ Highlights ]</h2>
 
 <div class="grid md:grid-cols-3 gap-8">
-<div class="card">
-<h3 class="text-lg font-semibold">EC-Council Involvement</h3>
-<p class="mt-2 text-gray-400">Official Exam Item Writer and speaker at EC-Council University’s CyberTalks series.</p>
+
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold">EC-Council Involvement</h3>
+<p class="mt-2 text-gray-400 text-sm">Official Exam Item Writer and speaker at EC-Council University’s CyberTalks series.</p>
 </div>
 
-<div class="card">
-<h3 class="text-lg font-semibold">Global CTF Rankings</h3>
-<p class="mt-2 text-gray-400">TryHackMe #190; Hack The Box #40 (Egypt); CyberTalents #4 Worldwide.</p>
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold">Global CTF Rankings</h3>
+<p class="mt-2 text-gray-400 text-sm">TryHackMe #190; Hack The Box #40 (Egypt); CyberTalents #4 Worldwide.</p>
 </div>
 
-<div class="card">
-<h3 class="text-lg font-semibold">Medium Publications</h3>
-<p class="mt-2 text-gray-400">Author of articles on CEH, CPENT, OT/IoT security and red teaming methodologies.</p>
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold">Medium Publications</h3>
+<p class="mt-2 text-gray-400 text-sm">Author of articles on CEH, CPENT, OT/IoT security and red teaming methodologies.</p>
 </div>
+
 </div>
 </div>
 </section>
 
 <!-- TALKS + ARTICLES -->
-<section id="talks" class="py-20 border-t border-gray-800">
-<div class="container mx-auto px-4">
+<section id="talks" class="py-20 border-t border-cyan-500/20">
+<div class="max-w-6xl mx-auto px-4">
 
-<div class="flex justify-between items-center mb-10">
-<h2 class="section-title">Talks</h2>
-<div class="accent"></div>
-</div>
+<h2 class="text-3xl font-mono text-cyan-400 neon mb-10">[ Talks ]</h2>
 
 <div class="grid md:grid-cols-2 gap-8 mb-16">
-<div class="card">
-<h3 class="text-lg font-semibold">Proactive Security: The Strategic Role of Ethical Hacking</h3>
-<p class="mt-2 text-gray-400">Delivered during EC-Council University’s CyberTalks; covered IoT car hacking and proactive defense strategies.</p>
-<a class="inline-block mt-3 text-emerald-400 text-sm hover:underline"
-href="https://www.eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking/" target="_blank">
-View Session
-</a>
+
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold">Proactive Security: The Strategic Role of Ethical Hacking</h3>
+<p class="mt-2 text-gray-400 text-sm">Delivered during EC-Council University’s CyberTalks; covered IoT car hacking and proactive defense strategies.</p>
+<a target="_blank" class="inline-block mt-3 text-cyan-400 font-mono text-sm hover:underline"
+href="https://www.eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking/">View Session</a>
 </div>
 
-<div class="card">
-<h3 class="text-lg font-semibold">Future Talks & Collaborations</h3>
-<p class="mt-2 text-gray-400">Upcoming collaborations with EC-Council Soon.</p>
-</div>
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold">Future Talks & Collaborations</h3>
+<p class="mt-2 text-gray-400 text-sm">Upcoming collaborations with EC-Council Soon.</p>
 </div>
 
-<div class="flex justify-between items-center mb-10">
-<h2 class="section-title">Articles</h2>
-<div class="accent"></div>
 </div>
+
+<h2 class="text-3xl font-mono text-cyan-400 neon mb-10">[ Articles ]</h2>
 
 <div class="grid md:grid-cols-2 gap-8">
-<div class="card">
-<h3 class="text-lg font-semibold">Kerberos Offensive Playbook: Enumeration & Ticket Abuse</h3>
-<p class="mt-2 text-gray-400">Offensive techniques, abuse cases, and enumeration strategies in Kerberos environments.</p>
-<a class="inline-block mt-3 text-emerald-400 text-sm hover:underline"
-href="https://www.eccouncil.org/cybersecurity-exchange/penetration-testing/kerberos-offensive-playbook-enumeration-ticket-abuse/" target="_blank">
-Read Article
-</a>
+
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold">Kerberos Offensive Playbook: Enumeration & Ticket Abuse</h3>
+<p class="mt-2 text-gray-400 text-sm">Offensive techniques, abuse cases, and enumeration strategies in Kerberos environments.</p>
+<a target="_blank" class="inline-block mt-3 text-cyan-400 font-mono text-sm hover:underline"
+href="https://www.eccouncil.org/cybersecurity-exchange/penetration-testing/kerberos-offensive-playbook-enumeration-ticket-abuse/">Read Article</a>
 </div>
 
-<div class="card">
-<h3 class="text-lg font-semibold">How CEH Transformed My Cybersecurity Career</h3>
-<p class="mt-2 text-gray-400">Personal insights on professional growth through EC-Council’s CEH certification.</p>
-<a class="inline-block mt-3 text-emerald-400 text-sm hover:underline"
-href="https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/how-ceh-transformed-my-cybersecurity-career/" target="_blank">
-Read Article
-</a>
-</div>
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold">How CEH Transformed My Cybersecurity Career</h3>
+<p class="mt-2 text-gray-400 text-sm">Personal insights on professional growth through EC-Council’s CEH certification.</p>
+<a target="_blank" class="inline-block mt-3 text-cyan-400 font-mono text-sm hover:underline"
+href="https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/how-ceh-transformed-my-cybersecurity-career/">Read Article</a>
 </div>
 
+</div>
 </div>
 </section>
 
 <!-- CERTIFICATIONS -->
-<section id="certs" class="py-20 border-t border-gray-800">
-<div class="container mx-auto px-4">
+<section id="certs" class="py-20 border-t border-cyan-500/20">
+<div class="max-w-6xl mx-auto px-4">
 
-<div class="flex justify-between items-center mb-10">
-<h2 class="section-title">Certifications</h2>
-<div class="accent"></div>
-</div>
+<h2 class="text-3xl font-mono text-cyan-400 neon mb-10">[ Certifications ]</h2>
 
-<div class="grid lg:grid-cols-2 gap-10">
+<div class="grid md:grid-cols-2 gap-10">
 
-<div class="card">
-<h3 class="text-xl font-bold mb-4">EC-Council</h3>
-<div class="grid sm:grid-cols-2 gap-4">
-<div class="card text-center">LPT (Master)</div>
-<div class="card text-center">CPENT</div>
-<div class="card text-center sm:col-span-2">CEH Master</div>
-</div>
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold mb-4">EC-Council</h3>
+<ul class="text-gray-400 text-sm space-y-1">
+<li>LPT (Master)</li>
+<li>CPENT</li>
+<li>CEH Master</li>
+</ul>
 </div>
 
 <div class="grid gap-6">
-<div class="card">
-<h3 class="font-bold">INE Security</h3>
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold">INE Security</h3>
 <p class="text-gray-400 text-sm">eJPT – Junior Penetration Tester</p>
 </div>
 
-<div class="card">
-<h3 class="font-bold">OpenEDG Python Institute</h3>
+<div class="card glass neon-border rounded-xl p-6">
+<h3 class="text-cyan-300 font-semibold">OpenEDG Python Institute</h3>
 <p class="text-gray-400 text-sm">PCEP – Certified Entry-Level Python Programmer</p>
 </div>
 </div>
@@ -192,24 +196,24 @@ Read Article
 </div>
 </section>
 
-<!-- CONTACT (unchanged content) -->
-<section id="contact" class="py-16 border-t border-neutral-900 text-center">
-<div class="mx-auto container px-4">
-<h2 class="text-2xl font-bold mb-4">Contact</h2>
-<p class="text-neutral-300 mb-6">Feel free to reach out for collaborations, speaking, or mentorship.</p>
-<a href="mailto:omartamerrr3@gmail.com" class="btn-primary">Email Me</a>
+<!-- CONTACT -->
+<section id="contact" class="py-20 border-t border-cyan-500/20 text-center">
+<div class="max-w-xl mx-auto px-4">
+<h2 class="text-3xl font-mono text-cyan-400 neon mb-4">[ Contact ]</h2>
+<p class="text-gray-400 mb-6">Feel free to reach out for collaborations, speaking, or mentorship.</p>
+<a href="mailto:omartamerrr3@gmail.com"
+class="inline-block px-8 py-3 bg-cyan-500 text-black font-mono rounded-lg hover:bg-cyan-400">
+SEND_EMAIL
+</a>
 </div>
 </section>
 
-<footer class="border-t border-gray-800 py-6 text-center text-sm text-gray-500">
+<footer class="py-6 text-center text-xs text-gray-500 font-mono">
 © <span id="year"></span> Omar Tamer — All Rights Reserved.
 </footer>
 
 <script>
-document.getElementById('year').textContent=new Date().getFullYear();
-const navToggle=document.getElementById('navToggle');
-const mobileNav=document.getElementById('mobileNav');
-navToggle.addEventListener('click',()=>mobileNav.classList.toggle('hidden'));
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>

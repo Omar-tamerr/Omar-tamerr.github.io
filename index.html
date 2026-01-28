@@ -14,9 +14,9 @@
         body {
             background: #000;
             color: #00ff9c;
-            font-family: 'JetBrains Mono', monospace; /* Consistent Font */
+            font-family: 'JetBrains Mono', monospace;
             overflow-x: hidden;
-            font-size: 16px; /* Consistent Size */
+            font-size: 16px;
         }
 
         canvas {
@@ -47,7 +47,7 @@
         }
 
         .command { color: #50fa7b; font-weight: bold; }
-        .output { color: #f8f8f2; margin-bottom: 1.5rem; display: none; } /* Hidden initially for typing effect */
+        .output { color: #f8f8f2; margin-bottom: 1.5rem; display: none; }
         
         .cursor {
             display: inline-block;
@@ -67,19 +67,18 @@
         }
         .navlink:hover { color: #fff; text-shadow: 0 0 8px #00ff9c; }
 
-        .btn {
-            border: 1px solid #00ff9c;
-            padding: 0.5rem 1rem;
-            transition: 0.3s;
-            background: transparent;
-            color: #00ff9c;
-        }
-        .btn:hover { background: #00ff9c; color: #000; box-shadow: 0 0 15px #00ff9c; }
-
-        /* Style for the THM Badge to match */
-        .thm-box {
-            filter: invert(1) hue-rotate(90deg) brightness(1.2);
+        /* FIXED THM BADGE FILTER */
+        .thm-box iframe {
+            filter: sepia(1) saturate(5) hue-rotate(90deg) brightness(0.8) contrast(1.2);
+            border-radius: 8px;
+            transition: 0.3s ease;
+            border: 1px solid rgba(0, 255, 156, 0.2);
             margin-top: 15px;
+        }
+
+        .thm-box iframe:hover {
+            filter: none;
+            border: 1px solid #00ff9c;
         }
     </style>
 </head>
@@ -105,7 +104,7 @@
             <p><span class="command">omar@kali:~$</span> <span id="type-whoami"></span><span id="cursor1" class="cursor"></span></p>
             <div id="out-whoami" class="output mt-2">
                 <h1 class="text-4xl font-bold neon uppercase tracking-tighter">Omar Tamer</h1>
-                <p class="text-emerald-400">Red Team Operator | LPT Master | EC-Council Item Writer</p>
+                <p class="text-emerald-400">Penetration Tester | EC-Council Exam Item Writer & CyberTalk Speaker | LPT Master, CPENT, CEH Master</p>
             </div>
         </div>
 
@@ -116,18 +115,19 @@
                     <div>
                         <p class="text-emerald-500 font-bold underline mb-2">Certifications:</p>
                         <ul class="text-sm space-y-1">
-                            <li>• LPT (Master)</li>
+                            <li>• LPT Master</li>
                             <li>• CPENT</li>
                             <li>• CEH Master</li>
-                            <li>• eJPT / PCEP</li>
+                            <li>• eJPT </li>
+                            <li>• PCEP </li>
                         </ul>
                     </div>
                     <div>
                         <p class="text-emerald-500 font-bold underline mb-2">Rankings:</p>
                         <ul class="text-sm space-y-1">
                             <li>• CyberTalents: #4 Worldwide</li>
-                            <li>• HTB Egypt: #40</li>
-                            <li>• THM: Top 0.1%</li>
+                            <li>• HTB Egypt: #90</li>
+                            <li>• THM: Top 0.1% Worldwide</li>
                         </ul>
                         <div class="thm-box">
                             <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2931128" style='border:none; width:260px; height:80px;' scrolling="no"></iframe>
@@ -161,7 +161,6 @@
 </footer>
 
 <script>
-    // Matrix Background
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
@@ -185,7 +184,6 @@
     }
     setInterval(draw, 33);
 
-    // Typing Effect Logic
     async function typeEffect(elementId, text, delay = 100) {
         const element = document.getElementById(elementId);
         for (let i = 0; i < text.length; i++) {
@@ -195,19 +193,16 @@
     }
 
     async function runTerminal() {
-        // Step 1: Whoami
         await typeEffect("type-whoami", "whoami");
         document.getElementById("cursor1").style.display = "none";
         document.getElementById("out-whoami").style.display = "block";
         
-        // Step 2: Profile
         await new Promise(r => setTimeout(r, 500));
         document.getElementById("cursor2").style.display = "inline-block";
         await typeEffect("type-profile", "cat profile.txt");
         document.getElementById("cursor2").style.display = "none";
         document.getElementById("out-profile").style.display = "block";
 
-        // Step 3: Publications
         await new Promise(r => setTimeout(r, 500));
         document.getElementById("cursor3").style.display = "inline-block";
         await typeEffect("type-cat", "ls -la publications/");

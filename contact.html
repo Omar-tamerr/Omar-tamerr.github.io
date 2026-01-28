@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Omar Tamer | Contact & Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { scroll-behavior: smooth; }
+        body {
+            background: #000;
+            color: #00ff9c;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+        }
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.4; }
+        
+        .glass {
+            background: rgba(0, 10, 5, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 156, 0.3);
+        }
+
+        .terminal-box {
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid #00ff9c;
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 0 30px rgba(0, 255, 156, 0.2);
+        }
+
+        .command { color: #50fa7b; font-weight: bold; }
+        .neon-text { text-shadow: 0 0 10px #00ff9c; }
+        
+        .btn-action {
+            border: 1px solid #00ff9c;
+            padding: 12px 24px;
+            font-size: 14px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 4px;
+            background: rgba(0, 255, 156, 0.05);
+        }
+        
+        .btn-action:hover {
+            background: #00ff9c;
+            color: #000;
+            box-shadow: 0 0 20px #00ff9c;
+        }
+
+        .file-stat {
+            font-size: 12px;
+            color: #8be9fd;
+            background: rgba(139, 233, 253, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header class="fixed w-full top-0 z-50 glass">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+        <div class="text-xl font-bold neon-text">omar@kali:~$</div>
+        <nav class="hidden md:flex gap-8">
+            <a class="navlink hover:text-white transition" href="index.html">home</a>
+            <a class="navlink hover:text-white transition" href="writeups.html">writeups</a>
+            <a class="navlink hover:text-white transition" href="socials.html">socials</a>
+            <a class="navlink text-white underline" href="contact.html">contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="max-w-4xl mx-auto pt-32 px-6 pb-20">
+    <div class="mb-10 text-center">
+        <h1 class="text-4xl font-bold uppercase tracking-tighter neon-text">>_ Establish Connection</h1>
+        <p class="text-emerald-500/70 mt-3">Ready for collaborations, inquiries, or networking.</p>
+    </div>
+
+    <div class="terminal-box mb-8">
+        <div class="flex items-center justify-between mb-6">
+            <p><span class="command">omar@kali:~$</span> ls -l Omar_Tamer_Resume.pdf</p>
+            <span class="file-stat">-rwxrwx--- 1 kali kali 98901 Aug 9 16:33</span>
+        </div>
+        
+        <div class="flex flex-col md:flex-row items-center gap-6">
+            <div class="flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">Technical CV / Resume</h3>
+                <p class="text-sm text-gray-400">Download my latest resume covering LPT Master, CPENT, and CEH Master achievements.</p>
+            </div>
+            <a href="Omar_Tamer_Resume.pdf" download class="btn-action">
+                <span>DOWNLOAD_RESUME.EXE</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="terminal-box">
+        <p class="mb-6"><span class="command">omar@kali:~$</span> ./contact_methods --all</p>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="p-6 border border-emerald-900/50 rounded-lg hover:border-emerald-500/50 transition">
+                <h3 class="text-white font-bold mb-2 uppercase">Direct Mail</h3>
+                <p class="text-sm text-gray-400 mb-6">For official business or project inquiries.</p>
+                <a href="mailto:omartamerrr3@gmail.com" class="btn-action w-full justify-center">
+                    SEND_MAIL
+                </a>
+            </div>
+
+            <div class="p-6 border border-emerald-900/50 rounded-lg hover:border-emerald-500/50 transition">
+                <h3 class="text-white font-bold mb-2 uppercase">LinkedIn DM</h3>
+                <p class="text-sm text-gray-400 mb-6">Connect and reach out directly through my profile.</p>
+                <a href="https://www.linkedin.com/in/omar-tamer-1a986b2a7/" target="_blank" class="btn-action w-full justify-center">
+                    OPEN_DM
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="text-center py-10 opacity-50 text-xs tracking-widest border-t border-emerald-900/30">
+    &copy; <span id="year"></span> OMAR TAMER // STATUS: LISTENING
+</footer>
+
+<script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const letters = "01010101ABCDEF";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array.from({length: columns}).fill(1);
+
+    function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#00ff9c";
+        ctx.font = fontSize + "px monospace";
+        for (let i = 0; i < drops.length; i++) {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        }
+    }
+    setInterval(draw, 33);
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

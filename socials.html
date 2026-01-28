@@ -75,16 +75,41 @@
 <main class="max-w-6xl mx-auto pt-32 px-6 pb-20">
     <div class="mb-12">
         <h1 class="text-3xl font-bold uppercase tracking-widest neon">>_ Socials & Rankings</h1>
-        <p class="text-emerald-500/70 mt-2 text-sm">Querying external identity providers...</p>
+        <p class="text-emerald-500/70 mt-2 text-sm">Querying identity providers...</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8">
         
+        <div class="terminal-box md:col-span-2">
+            <p><span class="command">omar@kali:~$</span> ./check_ranks.sh --all</p>
+            <div class="mt-4 grid md:grid-cols-2 gap-6">
+                <div>
+                    <p class="text-white font-bold underline">Global Standings:</p>
+                    <ul class="mt-2 space-y-1 text-sm">
+                        <li><span class="text-emerald-500">•</span> CyberTalents: #4 Worldwide</li>
+                        <li><span class="text-emerald-500">•</span> OffSec Labs: #408 Worldwide</li>
+                        <li><span class="text-emerald-500">•</span> TryHackMe: Top 0.1% (#190)</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-white font-bold underline">Regional / Platform:</p>
+                    <ul class="mt-2 space-y-1 text-sm">
+                        <li><span class="text-emerald-500">•</span> HTB Egypt: Rank #40</li>
+                        <li><span class="text-emerald-500">•</span> THM Level: God of the Underworld</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-4 flex gap-4">
+                <a href="https://cybertalents.com/members/OmarTamer0/profile" target="_blank" class="btn-terminal">view_cybertalents</a>
+                <a href="https://tryhackme.com/p/OmarTamer0" target="_blank" class="btn-terminal">view_thm</a>
+            </div>
+        </div>
+
         <div class="terminal-box">
             <p><span class="command">omar@kali:~$</span> finger linkedin</p>
             <div class="mt-4">
                 <p class="text-white font-bold">Identity: Omar Tamer</p>
-                <p class="text-sm text-gray-400 mt-1">Status: Active Red Teamer / Speaker</p>
+                <p class="text-sm text-gray-400 mt-1">LPT Master | EC-Council Item Writer</p>
                 <a href="https://www.linkedin.com/in/omar-tamer-1a986b2a7/" target="_blank" class="btn-terminal">exec connect.sh</a>
                 <button id="copyLi" class="btn-terminal ml-2">copy_url.py</button>
             </div>
@@ -94,26 +119,8 @@
             <p><span class="command">omar@kali:~$</span> git remote -v</p>
             <div class="mt-4">
                 <p class="text-white font-bold">@Omar-tamerr</p>
-                <p class="text-sm text-gray-400 mt-1">Repo count: [Private Labs + Public Tools]</p>
-                <a href="https://github.com/Omar-tamerr" target="_blank" class="btn-terminal">git clone repository</a>
-            </div>
-        </div>
-
-        <div class="terminal-box">
-            <p><span class="command">omar@kali:~$</span> cat thm_stats.log</p>
-            <div class="mt-4">
-                <p class="text-white font-bold font-mono">Rank: #190 <span class="text-xs border border-emerald-500 px-1 ml-2 text-emerald-500">TOP 0.1%</span></p>
-                <p class="text-sm text-gray-400 mt-1">Level: God of the Underworld</p>
-                <a href="https://tryhackme.com/p/OmarTamer0" target="_blank" class="btn-terminal">curl thm_profile</a>
-            </div>
-        </div>
-
-        <div class="terminal-box">
-            <p><span class="command">omar@kali:~$</span> ./ctf_rankings.sh</p>
-            <div class="mt-4">
-                <p class="text-white font-bold uppercase">CyberTalents: #4 Worldwide</p>
-                <p class="text-sm text-gray-400 mt-1">HTB Egypt: Rank #40</p>
-                <a href="https://cybertalents.com/members/OmarTamer0/profile" target="_blank" class="btn-terminal">cat global_rank</a>
+                <p class="text-sm text-gray-400 mt-1">Tools, Labs, and Exploit Research</p>
+                <a href="https://github.com/Omar-tamerr" target="_blank" class="btn-terminal">git clone repos</a>
             </div>
         </div>
 
@@ -136,7 +143,6 @@
 </footer>
 
 <script>
-    // Matrix Background
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
@@ -162,7 +168,6 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    // Copy URL logic
     document.getElementById('copyLi')?.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText('https://www.linkedin.com/in/omar-tamer-1a986b2a7/');

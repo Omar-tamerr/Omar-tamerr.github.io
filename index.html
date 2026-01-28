@@ -1,189 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Omar Tamer | Red Team & Penetration Testing Specialist</title>
-  <meta name="description" content="Portfolio of Omar Tamer; Red Team & Penetration Testing Specialist; EC-Council Exam Item Writer; speaker; writeups; and projects." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root { color-scheme: dark; scroll-behavior: smooth; }
-    .container { max-width: 1140px; }
-    .card { @apply bg-neutral-900/70 border border-neutral-800 rounded-2xl p-6 shadow-lg transition duration-200; }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.45); }
-    .chip { @apply inline-flex items-center rounded-full border border-neutral-700 px-3 py-1 text-xs text-neutral-200; }
-    .link { @apply underline decoration-neutral-600 underline-offset-4 hover:decoration-neutral-400; }
-    .btn { @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 border border-neutral-700 bg-neutral-900/70 hover:bg-neutral-800; }
-    .btn-primary { background: linear-gradient(90deg,#34d399,#60a5fa); @apply text-black font-medium px-5 py-2.5 rounded-xl; }
-    .sectionHead { @apply flex items-end justify-between flex-wrap gap-2; }
-    .accentBar { @apply h-1 w-24 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full; }
-    .navlink { transition: all .2s ease; }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Omar Tamer | Red Team & Penetration Testing Specialist</title>
+
+<meta name="description" content="Portfolio of Omar Tamer; Red Team & Penetration Testing Specialist; EC-Council Exam Item Writer; speaker; writeups; and projects." />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+:root{scroll-behavior:smooth;color-scheme:dark}
+.container{max-width:1200px}
+.glass{background:rgba(15,23,42,.6);backdrop-filter:blur(12px)}
+.card{border:1px solid #1f2933;border-radius:1rem;padding:1.5rem;transition:.25s;background:linear-gradient(145deg,#0b1220,#05080f)}
+.card:hover{transform:translateY(-6px);border-color:#34d399;box-shadow:0 15px 40px rgba(0,0,0,.6)}
+.btn{border:1px solid #374151;padding:.6rem 1.2rem;border-radius:.75rem}
+.btn-primary{background:linear-gradient(90deg,#34d399,#60a5fa);color:#000;font-weight:600;padding:.7rem 1.5rem;border-radius:.75rem}
+.section-title{font-size:1.75rem;font-weight:700}
+.accent{height:3px;width:80px;background:linear-gradient(90deg,#34d399,#60a5fa);border-radius:999px}
+.navlink:hover{color:#34d399}
+</style>
 </head>
-<body class="bg-black text-neutral-200 font-sans">
-  <!-- Header -->
-  <header class="sticky top-0 z-50 border-b border-neutral-900 bg-black/70 backdrop-blur">
-    <div class="mx-auto container px-4 py-4">
-      <div class="flex items-center justify-between flex-wrap gap-3">
-        <a href="/index.html" class="font-semibold tracking-wide text-lg">OMAR TAMER</a>
-        <button id="navToggle" class="md:hidden px-3 py-2 rounded-lg border border-neutral-700 text-sm">Menu</button>
-      </div>
-      <nav id="navBar" class="hidden md:flex flex-wrap items-center justify-center gap-6 py-3 text-sm">
-        <a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#about">About</a>
-        <a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#highlights">Highlights</a>
-        <a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#talks">Talks</a>
-        <a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="/writeups.html">Writeups</a>
-        <a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="/socials.html">Socials</a>
-        <a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#projects">Projects</a>
-        <a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#certs">Certifications</a>
-        <a class="navlink px-3 py-2 rounded-lg hover:bg-neutral-800 hover:text-white" href="#contact">Contact</a>
-      </nav>
-      <div id="mobileNav" class="hidden md:hidden mt-3 grid gap-2 text-sm">
-        <a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#about">About</a>
-        <a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#highlights">Highlights</a>
-        <a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#talks">Talks</a>
-        <a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="/writeups.html">Writeups</a>
-        <a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="/socials.html">Socials</a>
-        <a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#projects">Projects</a>
-        <a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#certs">Certifications</a>
-        <a class="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800" href="#contact">Contact</a>
-      </div>
-    </div>
-  </header>
 
-  <!-- Hero -->
-  <section id="home" class="py-20 text-center">
-    <div class="mx-auto container px-4">
-      <h1 class="text-4xl md:text-5xl font-extrabold">Omar Tamer</h1>
-      <p class="mt-4 text-lg text-neutral-300 max-w-2xl mx-auto">
-        Red Team & Penetration Testing Specialist<br />
-        EC-Council Exam Item Writer | CyberTalks Speaker | CEH Master | CPENT | LPT (Master)
-      </p>
-      <div class="mt-6 flex justify-center gap-4">
-        <a href="/socials.html" class="btn-primary">View My Profiles</a>
-        <a href="#contact" class="btn">Contact Me</a>
-      </div>
-    </div>
-  </section>
+<body class="bg-gradient-to-br from-[#05080f] via-[#070b14] to-[#02040a] text-gray-200 font-sans">
 
-  <!-- Highlights -->
-  <section id="highlights" class="py-16 border-t border-neutral-900">
-    <div class="mx-auto container px-4">
-      <div class="sectionHead mb-8">
-        <h2 class="text-2xl font-bold">Highlights</h2>
-        <div class="accentBar"></div>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card">
-          <h3 class="font-semibold text-lg">EC-Council Involvement</h3>
-          <p class="mt-2 text-neutral-300">Official Exam Item Writer and speaker at EC-Council University’s CyberTalks series.</p>
-        </div>
-        <div class="card">
-          <h3 class="font-semibold text-lg">Global CTF Rankings</h3>
-          <p class="mt-2 text-neutral-300">TryHackMe #190; Hack The Box #40 (Egypt); CyberTalents #4 Worldwide.</p>
-        </div>
-        <div class="card">
-          <h3 class="font-semibold text-lg">Medium Publications</h3>
-          <p class="mt-2 text-neutral-300">Author of articles on CEH, CPENT, OT/IoT security and red teaming methodologies.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- HEADER -->
+<header class="fixed top-0 w-full z-50 glass border-b border-gray-800">
+<div class="container mx-auto px-4 py-4 flex justify-between items-center">
+<a href="/index.html" class="text-lg font-bold tracking-wide">OMAR TAMER</a>
 
-  <!-- Talks -->
-  <section id="talks" class="py-16 border-t border-neutral-900">
-    <div class="mx-auto container px-4">
-      <div class="sectionHead mb-8">
-        <h2 class="text-2xl font-bold">Talks</h2>
-        <div class="accentBar"></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="card">
-          <h3 class="font-semibold text-lg">Proactive Security: The Strategic Role of Ethical Hacking</h3>
-          <p class="mt-2 text-neutral-300">Delivered during EC-Council University’s CyberTalks; covered IoT car hacking and proactive defense strategies.</p>
-          <a class="link mt-3 inline-block text-sm" href="https://www.eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking/" target="_blank">View Session</a>
-        </div>
-        <div class="card">
-          <h3 class="font-semibold text-lg">Future Talks & Collaborations</h3>
-          <p class="mt-2 text-neutral-300">Upcoming collaborations with EC-Council Soon.</p>
-        </div>
-      </div>
-    </div>
- <section id="certs" class="py-16 border-t border-neutral-900">
-  <div class="mx-auto container px-4">
-    <div class="flex items-end justify-between flex-wrap gap-2 mb-8">
-      <h2 class="text-2xl font-bold">Certifications</h2>
-      <div class="h-1 w-24 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full"></div>
-    </div>
+<button id="navToggle" class="md:hidden border px-3 py-1 rounded">Menu</button>
 
-    <section id="certs" class="py-16 border-t border-neutral-900">
-  <div class="mx-auto container px-4">
-    <div class="flex items-end justify-between flex-wrap gap-2 mb-8">
-      <h2 class="text-2xl font-bold">Certifications</h2>
-      <div class="h-1 w-24 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full"></div>
-    </div>
+<nav id="navBar" class="hidden md:flex gap-6 text-sm">
+<a class="navlink" href="#about">About</a>
+<a class="navlink" href="#highlights">Highlights</a>
+<a class="navlink" href="#talks">Talks</a>
+<a class="navlink" href="/writeups.html">Writeups</a>
+<a class="navlink" href="/socials.html">Socials</a>
+<a class="navlink" href="#projects">Projects</a>
+<a class="navlink" href="#certs">Certifications</a>
+<a class="navlink" href="#contact">Contact</a>
+</nav>
+</div>
 
-    <div class="grid gap-8 lg:grid-cols-2">
-      <!-- EC-Council Certifications Group -->
-      <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-6 shadow-lg hover:shadow-xl transition">
-        <div class="mb-4">
-          <div class="text-xl font-extrabold text-neutral-100">EC-Council</div>
-          <p class="text-sm text-neutral-400">Leading certifications in ethical hacking and penetration testing</p>
-        </div>
-        <div class="grid gap-4 sm:grid-cols-2">
-          <div class="rounded-xl border border-neutral-800 bg-neutral-950/70 p-4 text-center hover:bg-neutral-900 transition">
-            <h3 class="font-semibold text-lg">LPT (Master)</h3>
-          </div>
-          <div class="rounded-xl border border-neutral-800 bg-neutral-950/70 p-4 text-center hover:bg-neutral-900 transition">
-            <h3 class="font-semibold text-lg">CPENT</h3>
-          </div>
-          <div class="rounded-xl border border-neutral-800 bg-neutral-950/70 p-4 text-center hover:bg-neutral-900 transition sm:col-span-2">
-            <h3 class="font-semibold text-lg">CEH Master</h3>
-          </div>
-        </div>
-      </div>
+<div id="mobileNav" class="hidden md:hidden px-4 pb-4 grid gap-2">
+<a href="#about">About</a>
+<a href="#highlights">Highlights</a>
+<a href="#talks">Talks</a>
+<a href="/writeups.html">Writeups</a>
+<a href="/socials.html">Socials</a>
+<a href="#projects">Projects</a>
+<a href="#certs">Certifications</a>
+<a href="#contact">Contact</a>
+</div>
+</header>
 
-      <!-- Other Certifications -->
-      <div class="grid gap-6">
-        <!-- INE Security -->
-        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-5 shadow-lg hover:shadow-xl transition">
-          <div>
-            <div class="text-xl font-extrabold text-neutral-100">INE Security</div>
-            <p class="text-sm text-neutral-400">eJPT – Junior Penetration Tester</p>
-          </div>
-        </div>
+<!-- HERO -->
+<section id="home" class="min-h-screen flex items-center justify-center text-center pt-24">
+<div class="container px-4">
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight">
+Omar <span class="text-emerald-400">Tamer</span>
+</h1>
 
-        <!-- OpenEDG Python Institute -->
-        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-5 shadow-lg hover:shadow-xl transition">
-          <div>
-            <div class="text-xl font-extrabold text-neutral-100">OpenEDG Python Institute</div>
-            <p class="text-sm text-neutral-400">PCEP – Certified Entry-Level Python Programmer</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<p class="mt-6 text-lg text-gray-400 max-w-2xl mx-auto">
+Red Team & Penetration Testing Specialist<br/>
+EC-Council Exam Item Writer | CyberTalks Speaker | CEH Master | CPENT | LPT (Master)
+</p>
+
+<div class="mt-10 flex justify-center gap-4">
+<a href="/socials.html" class="btn-primary">View My Profiles</a>
+<a href="#contact" class="btn">Contact Me</a>
+</div>
+</div>
 </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-16 border-t border-neutral-900 text-center">
-    <div class="mx-auto container px-4">
-      <h2 class="text-2xl font-bold mb-4">Contact</h2>
-      <p class="text-neutral-300 mb-6">Feel free to reach out for collaborations, speaking, or mentorship.</p>
-      <a href="mailto:omartamerrr3@gmail.com" class="btn-primary">Email Me</a>
-    </div>
-  </section>
+<!-- HIGHLIGHTS -->
+<section id="highlights" class="py-20 border-t border-gray-800">
+<div class="container mx-auto px-4">
 
-  <footer class="border-t border-neutral-900 text-center py-6 text-sm text-neutral-500">
-    © <span id="year"></span> Omar Tamer — All Rights Reserved.
-  </footer>
+<div class="flex justify-between items-center mb-10">
+<h2 class="section-title">Highlights</h2>
+<div class="accent"></div>
+</div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const navToggle = document.getElementById('navToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    navToggle.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
-  </script>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="card">
+<h3 class="text-lg font-semibold">EC-Council Involvement</h3>
+<p class="mt-2 text-gray-400">Official Exam Item Writer and speaker at EC-Council University’s CyberTalks series.</p>
+</div>
+
+<div class="card">
+<h3 class="text-lg font-semibold">Global CTF Rankings</h3>
+<p class="mt-2 text-gray-400">TryHackMe #190; Hack The Box #40 (Egypt); CyberTalents #4 Worldwide.</p>
+</div>
+
+<div class="card">
+<h3 class="text-lg font-semibold">Medium Publications</h3>
+<p class="mt-2 text-gray-400">Author of articles on CEH, CPENT, OT/IoT security and red teaming methodologies.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TALKS + ARTICLES -->
+<section id="talks" class="py-20 border-t border-gray-800">
+<div class="container mx-auto px-4">
+
+<div class="flex justify-between items-center mb-10">
+<h2 class="section-title">Talks</h2>
+<div class="accent"></div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-8 mb-16">
+<div class="card">
+<h3 class="text-lg font-semibold">Proactive Security: The Strategic Role of Ethical Hacking</h3>
+<p class="mt-2 text-gray-400">Delivered during EC-Council University’s CyberTalks; covered IoT car hacking and proactive defense strategies.</p>
+<a class="inline-block mt-3 text-emerald-400 text-sm hover:underline"
+href="https://www.eccu.edu/cyber-talks/proactive-security-the-strategic-role-of-ethical-hacking/" target="_blank">
+View Session
+</a>
+</div>
+
+<div class="card">
+<h3 class="text-lg font-semibold">Future Talks & Collaborations</h3>
+<p class="mt-2 text-gray-400">Upcoming collaborations with EC-Council Soon.</p>
+</div>
+</div>
+
+<div class="flex justify-between items-center mb-10">
+<h2 class="section-title">Articles</h2>
+<div class="accent"></div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-8">
+<div class="card">
+<h3 class="text-lg font-semibold">Kerberos Offensive Playbook: Enumeration & Ticket Abuse</h3>
+<p class="mt-2 text-gray-400">Offensive techniques, abuse cases, and enumeration strategies in Kerberos environments.</p>
+<a class="inline-block mt-3 text-emerald-400 text-sm hover:underline"
+href="https://www.eccouncil.org/cybersecurity-exchange/penetration-testing/kerberos-offensive-playbook-enumeration-ticket-abuse/" target="_blank">
+Read Article
+</a>
+</div>
+
+<div class="card">
+<h3 class="text-lg font-semibold">How CEH Transformed My Cybersecurity Career</h3>
+<p class="mt-2 text-gray-400">Personal insights on professional growth through EC-Council’s CEH certification.</p>
+<a class="inline-block mt-3 text-emerald-400 text-sm hover:underline"
+href="https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/how-ceh-transformed-my-cybersecurity-career/" target="_blank">
+Read Article
+</a>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs" class="py-20 border-t border-gray-800">
+<div class="container mx-auto px-4">
+
+<div class="flex justify-between items-center mb-10">
+<h2 class="section-title">Certifications</h2>
+<div class="accent"></div>
+</div>
+
+<div class="grid lg:grid-cols-2 gap-10">
+
+<div class="card">
+<h3 class="text-xl font-bold mb-4">EC-Council</h3>
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="card text-center">LPT (Master)</div>
+<div class="card text-center">CPENT</div>
+<div class="card text-center sm:col-span-2">CEH Master</div>
+</div>
+</div>
+
+<div class="grid gap-6">
+<div class="card">
+<h3 class="font-bold">INE Security</h3>
+<p class="text-gray-400 text-sm">eJPT – Junior Penetration Tester</p>
+</div>
+
+<div class="card">
+<h3 class="font-bold">OpenEDG Python Institute</h3>
+<p class="text-gray-400 text-sm">PCEP – Certified Entry-Level Python Programmer</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CONTACT (unchanged content) -->
+<section id="contact" class="py-16 border-t border-neutral-900 text-center">
+<div class="mx-auto container px-4">
+<h2 class="text-2xl font-bold mb-4">Contact</h2>
+<p class="text-neutral-300 mb-6">Feel free to reach out for collaborations, speaking, or mentorship.</p>
+<a href="mailto:omartamerrr3@gmail.com" class="btn-primary">Email Me</a>
+</div>
+</section>
+
+<footer class="border-t border-gray-800 py-6 text-center text-sm text-gray-500">
+© <span id="year"></span> Omar Tamer — All Rights Reserved.
+</footer>
+
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const navToggle=document.getElementById('navToggle');
+const mobileNav=document.getElementById('mobileNav');
+navToggle.addEventListener('click',()=>mobileNav.classList.toggle('hidden'));
+</script>
+
 </body>
 </html>
 

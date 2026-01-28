@@ -3,190 +3,239 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Omar Tamer | Offensive Security Professional</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Omar Tamer | Red Team Operator</title>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        dark: '#05070a',
-                        surface: '#0d1117',
-                        accent: '#10b981', 
-                        primary: '#34d399', 
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        body { background-color: #05070a; color: #e2e8f0; scroll-behavior: smooth; }
-        .glass { background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .hero-gradient {
-            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.08) 0%, rgba(5, 7, 10, 1) 75%);
+        :root { scroll-behavior: smooth; }
+        
+        body {
+            background: #000;
+            color: #00ff9c;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+            font-size: 16px;
         }
-        .card-hover:hover { border-color: rgba(16, 185, 129, 0.4); transform: translateY(-4px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .thm-badge { filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.2)); transition: 0.3s; }
-        .thm-badge:hover { filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.5)); }
+
+        canvas {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: -1;
+            opacity: 0.6; /* Matrix effect is subtle but visible */
+        }
+
+        .neon { text-shadow: 0 0 8px #00ff9c, 0 0 20px rgba(0, 255, 156, 0.4); }
+
+        .glass {
+            background: rgba(0, 15, 10, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 156, 0.25);
+        }
+
+        .card {
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-left: 3px solid #00ff9c;
+            box-shadow: 0 10px 30px rgba(0, 255, 156, 0.15);
+            background: rgba(0, 255, 156, 0.05);
+        }
+
+        .btn {
+            border: 1px solid #00ff9c;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            transition: 0.3s;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #00ff9c;
+            color: black;
+            box-shadow: 0 0 20px #00ff9c;
+        }
+
+        .terminal-window {
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00ff9c;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(0, 255, 156, 0.2);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 8px 15px;
+            display: flex;
+            gap: 6px;
+            border-bottom: 1px solid #333;
+        }
+
+        .dot { height: 12px; width: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .section-title::before {
+            content: ">_ ";
+            color: #00ff9c;
+        }
+
+        iframe {
+            filter: grayscale(1) invert(1) brightness(1.5); /* Makes THM badge match the green/dark theme */
+            transition: 0.3s;
+        }
+        iframe:hover { filter: none; }
     </style>
 </head>
-<body class="font-sans">
 
-    <nav class="fixed w-full top-0 z-50 glass border-b border-white/5">
-        <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-            <div class="font-mono font-bold text-primary tracking-tighter text-xl">
-                OT<span class="text-white opacity-50">_</span>SEC<span class="animate-pulse">_</span>
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-slate-400">
-                <a href="#highlights" class="hover:text-primary transition">Dossier</a>
-                <a href="#publications" class="hover:text-primary transition">Publications</a>
-                <a href="#certs" class="hover:text-primary transition">Expertise</a>
-                <a href="/writeups.html" class="hover:text-primary transition">Labs</a>
-            </div>
-            <a href="mailto:omartamerrr3@gmail.com" class="bg-primary/10 border border-primary/50 text-primary px-4 py-2 rounded-lg text-sm hover:bg-primary hover:text-dark transition font-bold uppercase tracking-tight">
-                Hire Operator
-            </a>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header class="fixed w-full top-0 z-50 glass">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+        <div class="text-xl font-bold neon">root@omar:~$</div>
+        <nav class="hidden md:flex gap-10">
+            <a class="hover:text-white transition uppercase text-sm tracking-tighter" href="#highlights">./highlights</a>
+            <a class="hover:text-white transition uppercase text-sm tracking-tighter" href="#publications">./publications</a>
+            <a class="hover:text-white transition uppercase text-sm tracking-tighter" href="#certs">./certs</a>
+            <a class="hover:text-white transition uppercase text-sm tracking-tighter" href="#contact">./contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="min-h-screen flex items-center justify-center px-6 pt-20">
+    <div class="terminal-window max-w-4xl w-full">
+        <div class="terminal-header">
+            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
         </div>
-    </nav>
+        <div class="p-8">
+            <p class="text-green-500 mb-2 font-bold"># Accessing Mainframe...</p>
+            <p class="mb-4"><span class="text-blue-400">omar@kali</span>:~$ whoami</p>
+            <h1 class="neon text-4xl md:text-6xl font-extrabold mb-6 uppercase tracking-widest">Omar Tamer</h1>
 
-    <section class="relative min-h-screen flex items-center justify-center hero-gradient px-6 pt-20">
-        <div class="text-center max-w-4xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6 tracking-widest uppercase">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                </span>
-                Active Red Teamer & LPT Master
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-white">
-                Omar <span class="text-primary">Tamer</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 font-light leading-relaxed mb-10 max-w-2xl mx-auto">
-                Specializing in Adversary Emulation and Infrastructure Exploitation. 
-                <span class="text-white font-medium">EC-Council Exam Item Writer</span> and contributor to offensive security methodologies.
+            <p class="mb-2"><span class="text-blue-400">omar@kali</span>:~$ cat expertise.json</p>
+            <p class="text-green-300 text-lg leading-relaxed mb-8">
+                {<br>
+                &nbsp;&nbsp;"role": "Penetration Tester",<br>
+                &nbsp;&nbsp;"focus": ["AD Exploitation", "Network Security", "Red Teaming"],<br>
+                &nbsp;&nbsp;"contribution": "EC-Council Exam Item Writer"<br>
+                }
             </p>
-            
-            <div class="mb-10 flex justify-center">
-                <div class="thm-badge overflow-hidden rounded-xl border border-white/10 glass p-1">
-                    <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2931128" style='border:none; width: 300px; height: 85px;' scrolling="no"></iframe>
-                </div>
+
+            <div class="mb-8 opacity-80 hover:opacity-100">
+                <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2931128" style='border:none; width:100%; max-width:300px; height:90px;'></iframe>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="/socials.html" class="px-8 py-4 bg-primary text-dark font-extrabold rounded-xl hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition">
-                    SOCIALS.SH
-                </a>
-                <a href="#publications" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition">
-                    READ ARTICLES
-                </a>
+            <div class="flex flex-wrap gap-4">
+                <a href="/socials.html" class="btn">ls ./socials</a>
+                <a href="#publications" class="btn">cd ./knowledge_base</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="highlights" class="py-20 bg-surface">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center group">
-                    <div class="text-3xl font-bold text-primary group-hover:scale-110 transition">#4</div>
-                    <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-2">CyberTalents Worldwide</div>
-                </div>
-                <div class="text-center group">
-                    <div class="text-3xl font-bold text-primary group-hover:scale-110 transition">Top 0.1%</div>
-                    <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-2">TryHackMe Rank</div>
-                </div>
-                <div class="text-center group">
-                    <div class="text-3xl font-bold text-primary group-hover:scale-110 transition">#40</div>
-                    <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-2">HTB Egypt</div>
-                </div>
-                <div class="text-center group">
-                    <div class="text-3xl font-bold text-primary group-hover:scale-110 transition">LPT-M</div>
-                    <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-2">Master Licensed</div>
-                </div>
+<section id="highlights" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="section-title text-3xl mb-12 neon font-bold uppercase">System Stats</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass p-8 card">
+                <p class="text-xs text-slate-400 uppercase">CyberTalents</p>
+                <h3 class="font-bold text-3xl text-white">#4 Worldwide</h3>
+            </div>
+            <div class="glass p-8 card">
+                <p class="text-xs text-slate-400 uppercase">HTB Egypt</p>
+                <h3 class="font-bold text-3xl text-white">Rank #40</h3>
+            </div>
+            <div class="glass p-8 card">
+                <p class="text-xs text-slate-400 uppercase">TryHackMe</p>
+                <h3 class="font-bold text-3xl text-white">Top 0.1%</h3>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="publications" class="py-24 bg-dark">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 flex items-center gap-4 text-white">
-                <span class="h-px w-12 bg-primary"></span> Featured Publications
-            </h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass p-8 rounded-2xl border border-white/5 card-hover relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition">
-                        <svg class="w-16 h-16 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 12h3v9h6v-6h4v6h6v-9h3L12 2z"/></svg>
-                    </div>
-                    <div class="text-primary font-mono text-xs mb-3">EC-Council Cybersecurity Exchange</div>
-                    <h3 class="text-xl font-bold text-white mb-4">Kerberos Offensive Playbook</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                        In-depth technical guide on Active Directory enumeration, ticket abuse (Golden/Silver tickets), and Kerberoasting techniques.
-                    </p>
-                    <a href="https://www.eccouncil.org/cybersecurity-exchange/penetration-testing/kerberos-offensive-playbook-enumeration-ticket-abuse/" target="_blank" class="text-primary font-bold text-sm inline-flex items-center gap-2 hover:underline">
-                        Read Full Playbook <span>&rarr;</span>
-                    </a>
-                </div>
-
-                <div class="glass p-8 rounded-2xl border border-white/5 card-hover relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition">
-                        <svg class="w-16 h-16 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5zM2.25 12c0 5.385 4.365 9.75 9.75 9.75s9.75-4.365 9.75-9.75S17.385 2.25 12 2.25 2.25 6.615 2.25 12z"/></svg>
-                    </div>
-                    <div class="text-primary font-mono text-xs mb-3">Professional Spotlight</div>
-                    <h3 class="text-xl font-bold text-white mb-4">How CEH Transformed My Career</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                        A retrospective on achieving CEH Master at 21 and the strategic role of certifications in offensive security career paths.
-                    </p>
-                    <a href="https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/how-ceh-transformed-my-cybersecurity-career/" target="_blank" class="text-primary font-bold text-sm inline-flex items-center gap-2 hover:underline">
-                        Read Testimonial <span>&rarr;</span>
-                    </a>
-                </div>
+<section id="publications" class="py-24 bg-black/40">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="section-title text-3xl mb-12 neon font-bold uppercase">Published Intelligence</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="glass p-8 card border-t-2 border-green-500">
+                <h3 class="text-xl font-bold mb-4">Kerberos Offensive Playbook</h3>
+                <p class="text-slate-400 mb-6">Technical guide for EC-Council on AD enumeration, ticket abuse, and Kerberoasting.</p>
+                <a href="https://www.eccouncil.org/cybersecurity-exchange/penetration-testing/kerberos-offensive-playbook-enumeration-ticket-abuse/" target="_blank" class="text-green-400 font-bold hover:underline">READ_REPORT.PDF >></a>
+            </div>
+            <div class="glass p-8 card border-t-2 border-green-500">
+                <h3 class="text-xl font-bold mb-4">CEH Career Transformation</h3>
+                <p class="text-slate-400 mb-6">Article featured in EC-Council University regarding the impact of CEH Master on professional growth.</p>
+                <a href="https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/how-ceh-transformed-my-cybersecurity-career/" target="_blank" class="text-green-400 font-bold hover:underline">READ_REPORT.PDF >></a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="certs" class="py-24 bg-surface/50">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 flex items-center gap-4 text-white">
-                <span class="h-px w-12 bg-primary"></span> Technical Expertise
-            </h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="glass p-8 rounded-2xl card-hover">
-                    <h3 class="text-primary font-bold text-xl mb-6">Offensive Mastery</h3>
-                    <ul class="space-y-4 text-slate-300 font-mono text-xs tracking-wider">
-                        <li class="flex items-center gap-3"><span class="text-primary font-bold">[+]</span> LPT (Master) — Licensed Penetration Tester</li>
-                        <li class="flex items-center gap-3"><span class="text-primary font-bold">[+]</span> CPENT — Certified Penetration Testing Professional</li>
-                        <li class="flex items-center gap-3"><span class="text-primary font-bold">[+]</span> CEH Master (Practical + ANSI)</li>
-                    </ul>
-                </div>
-                <div class="glass p-8 rounded-2xl card-hover">
-                    <h3 class="text-primary font-bold text-xl mb-6">Development & Core</h3>
-                    <ul class="space-y-4 text-slate-300 font-mono text-xs tracking-wider">
-                        <li class="flex items-center gap-3"><span class="text-primary font-bold">[+]</span> EC-Council Exam Item Writer</li>
-                        <li class="flex items-center gap-3"><span class="text-primary font-bold">[+]</span> eJPT — Junior Penetration Tester</li>
-                        <li class="flex items-center gap-3"><span class="text-primary font-bold">[+]</span> PCEP — Python Entry-Level Programming</li>
-                    </ul>
-                </div>
-            </div>
+<section id="certs" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="section-title text-3xl mb-12 neon font-bold uppercase">Credentials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+            <div class="glass p-6 font-bold text-xl hover:text-white transition">LPT (Master) · CPENT · CEH Master</div>
+            <div class="glass p-6 font-bold text-xl hover:text-white transition">eJPT · PCEP · Item Writer</div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="contact" class="py-24 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">Secure Communication</h2>
-        <a href="mailto:omartamerrr3@gmail.com" class="px-10 py-4 border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-dark transition-all duration-300 inline-block shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-            INITIATE CONTACT
-        </a>
-    </section>
+<section id="contact" class="py-24 text-center glass">
+    <h2 class="text-3xl mb-8 neon font-bold uppercase">Secure Connection</h2>
+    <p class="mb-10 text-slate-400">Initiate encrypted communication via SMTP</p>
+    <a href="mailto:omartamerrr3@gmail.com" class="btn text-2xl px-12 py-6">./send_mail.sh</a>
+</section>
 
-    <footer class="py-12 border-t border-white/5 text-center text-slate-600 text-xs tracking-[0.3em] uppercase">
-        &copy; <span id="year"></span> OMAR TAMER // OPERATOR ID: 2931128
-    </footer>
+<footer class="text-center py-12 text-slate-600 text-sm tracking-widest uppercase">
+    &copy; <span id="year"></span> OMAR TAMER // STATUS: <span class="text-green-500">ACTIVE</span>
+</footer>
 
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.onresize = resize;
+
+    const letters = "0101010101010101ABCDEF";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array.from({ length: columns }).fill(1);
+
+    function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#00ff9c";
+        ctx.font = fontSize + "px 'JetBrains Mono'";
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                drops[i] = 0;
+            drops[i]++;
+        }
+    }
+    setInterval(draw, 35);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>

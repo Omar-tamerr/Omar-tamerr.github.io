@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Omar Tamer | Tools</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root { scroll-behavior: smooth; }
+        
+        body {
+            background: #000;
+            color: #00ff9c;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .neon { text-shadow: 0 0 10px #00ff9c; }
+
+        .glass {
+            background: rgba(0, 10, 5, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 156, 0.3);
+        }
+
+        .terminal-container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff9c;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 255, 156, 0.2);
+            min-height: 500px;
+        }
+
+        .command { color: #50fa7b; font-weight: bold; }
+        .output { color: #f8f8f2; margin-bottom: 1.5rem; display: none; }
+        
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #00ff9c;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .navlink {
+            font-size: 14px;
+            text-transform: lowercase;
+            transition: 0.3s;
+        }
+
+        .navlink:hover {
+            color: #fff;
+            text-shadow: 0 0 8px #00ff9c;
+        }
+
+        .tool-card {
+            border-left: 2px solid #1a1a1a;
+            padding: 1rem 1rem 1rem 1.25rem;
+            transition: 0.3s;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .tool-card:hover {
+            border-left-color: #00ff9c;
+            background: rgba(0, 255, 156, 0.05);
+        }
+
+        .btn-exe {
+            border: 1px solid #00ff9c;
+            padding: 4px 10px;
+            font-size: 12px;
+            color: #00ff9c;
+            margin-top: 10px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-exe:hover {
+            background: #00ff9c;
+            color: #000;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 12px;
+            padding: 2px 8px;
+            border: 1px solid rgba(0, 255, 156, 0.25);
+            color: #9ae6b4;
+            margin-right: 6px;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header class="fixed w-full top-0 z-50 glass">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-8 py-4">
+        <div class="text-xl font-bold neon">omar@kali:~$</div>
+        <nav class="flex gap-4 md:gap-8 mt-2 md:mt-0">
+            <a class="navlink" href="index.html">home</a>
+            <a class="navlink" href="writeups.html">writeups</a>
+            <a class="navlink" href="tools.html">tools</a>
+            <a class="navlink" href="socials.html">socials</a>
+            <a class="navlink" href="contact.html">contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="min-h-screen flex items-center justify-center px-6 pt-24 pb-12">
+    <div class="terminal-container">
+        <div class="mb-6">
+            <p><span class="command">omar@kali:~$</span> <span id="type-tools"></span><span id="cursor1" class="cursor"></span></p>
+            <div id="out-tools" class="output mt-2">
+                <h1 class="text-4xl font-bold neon uppercase tracking-tighter">Tool Arsenal</h1>
+                <p class="text-emerald-400 mt-2">Custom offensive security, phishing awareness, OT security, automation, and recon tooling.</p>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <p><span class="command">omar@kali:~$</span> <span id="type-list"></span><span id="cursor2" class="cursor" style="display:none;"></span></p>
+            <div id="out-list" class="output mt-4">
+                <p class="text-sm text-gray-400 mb-4">// Enumerating repositories from /opt/omar/tools/</p>
+
+                <div class="space-y-5">
+
+                    <article class="tool-card">
+                        <h3 class="text-white font-bold text-xl">Tpeek</h3>
+                        <p class="text-sm text-gray-400 mt-1">Repository: Omar-tamerr/Tpeek</p>
+                        <p class="mt-2 text-gray-300">
+                            A custom security tool in the Omar Tamer arsenal, listed as the first featured project in the tools collection.
+                        </p>
+                        <div class="mt-2">
+                            <span class="tag">custom-tool</span>
+                            <span class="tag">security</span>
+                            <span class="tag">github</span>
+                        </div>
+                        <div class="flex gap-3 flex-wrap mt-3">
+                            <a href="https://github.com/Omar-tamerr/Tpeek" target="_blank" class="btn-exe">./launch_tpeek.sh</a>
+                        </div>
+                    </article>
+
+                    <article class="tool-card">
+                        <h3 class="text-white font-bold text-xl">OTSec</h3>
+                        <p class="text-sm text-gray-400 mt-1">Repository: Omar-tamerr/OTSec</p>
+                        <p class="mt-2 text-gray-300">
+                            An offensive and defensive OT/IoT-focused project built around industrial security concepts and operational technology environments.
+                        </p>
+                        <div class="mt-2">
+                            <span class="tag">ot-security</span>
+                            <span class="tag">iot-security</span>
+                            <span class="tag">defensive-strategy</span>
+                        </div>
+                        <div class="flex gap-3 flex-wrap mt-3">
+                            <a href="https://github.com/Omar-tamerr/OTSec" target="_blank" class="btn-exe">./open_otsec.sh</a>
+                        </div>
+                    </article>
+
+                    <article class="tool-card">
+                        <h3 class="text-white font-bold text-xl">BruteVector</h3>
+                        <p class="text-sm text-gray-400 mt-1">Repository: Omar-tamerr/BruteVector</p>
+                        <p class="mt-2 text-gray-300">
+                            A security project positioned before Packet-Whiz and phishguard in the tool timeline, forming part of your offensive tooling evolution.
+                        </p>
+                        <div class="mt-2">
+                            <span class="tag">offensive-security</span>
+                            <span class="tag">automation</span>
+                            <span class="tag">tooling</span>
+                        </div>
+                        <div class="flex gap-3 flex-wrap mt-3">
+                            <a href="https://github.com/Omar-tamerr/BruteVector" target="_blank" class="btn-exe">./run_brutevector.sh</a>
+                        </div>
+                    </article>
+
+                    <article class="tool-card">
+                        <h3 class="text-white font-bold text-xl">Packet-Whiz</h3>
+                        <p class="text-sm text-gray-400 mt-1">Repository: Omar-tamerr/Packet-Whiz</p>
+                        <p class="mt-2 text-gray-300">
+                            A networking and packet-focused project published before phishguard and HorusEye, representing another stage in your tooling stack.
+                        </p>
+                        <div class="mt-2">
+                            <span class="tag">networking</span>
+                            <span class="tag">packet-analysis</span>
+                            <span class="tag">security-tool</span>
+                        </div>
+                        <div class="flex gap-3 flex-wrap mt-3">
+                            <a href="https://github.com/Omar-tamerr/Packet-Whiz" target="_blank" class="btn-exe">./inspect_packets.sh</a>
+                        </div>
+                    </article>
+
+                    <article class="tool-card">
+                        <h3 class="text-white font-bold text-xl">phishguard</h3>
+                        <p class="text-sm text-gray-400 mt-1">Repository: Omar-tamerr/phishguard</p>
+                        <p class="mt-2 text-gray-300">
+                            A phishing-focused security tool released before HorusEye, likely centered on phishing awareness, detection, or simulation workflows.
+                        </p>
+                        <div class="mt-2">
+                            <span class="tag">phishing</span>
+                            <span class="tag">awareness</span>
+                            <span class="tag">security</span>
+                        </div>
+                        <div class="flex gap-3 flex-wrap mt-3">
+                            <a href="https://github.com/Omar-tamerr/phishguard" target="_blank" class="btn-exe">./deploy_phishguard.sh</a>
+                        </div>
+                    </article>
+
+                    <article class="tool-card">
+                        <h3 class="text-white font-bold text-xl">HorusEye</h3>
+                        <p class="text-sm text-gray-400 mt-1">Repository: Omar-tamerr/HorusEye</p>
+                        <p class="mt-2 text-gray-300">
+                            An AI-assisted Active Directory attack platform built after 1000+ CTF rooms, designed to automate and streamline offensive AD workflows.
+                        </p>
+                        <div class="mt-2">
+                            <span class="tag">active-directory</span>
+                            <span class="tag">red-team</span>
+                            <span class="tag">ai-assisted</span>
+                        </div>
+                        <div class="flex gap-3 flex-wrap mt-3">
+                            <a href="https://github.com/Omar-tamerr/HorusEye" target="_blank" class="btn-exe">./init_horuseye.sh</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <p><span class="command">omar@kali:~$</span> <span id="type-status"></span><span id="cursor3" class="cursor" style="display:none;"></span></p>
+            <div id="out-status" class="output mt-2">
+                <p class="text-sm text-emerald-500/80">[OK] Arsenal indexed successfully.</p>
+                <p class="text-sm text-gray-400">Use the tools section to showcase original projects, red team utilities, and research-backed security engineering work.</p>
+            </div>
+        </div>
+
+        <p><span class="command">omar@kali:~$</span> <span class="cursor"></span></p>
+    </div>
+</section>
+
+<footer class="text-center py-10 opacity-50 text-xs tracking-widest">
+    &copy; <span id="year"></span> OMAR TAMER // TOOLCHAIN_STATUS: LOADED
+</footer>
+
+<script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const letters = "01010101ABCDEF";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array.from({length: columns}).fill(1);
+
+    function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#00ff9c";
+        ctx.font = fontSize + "px monospace";
+        for (let i = 0; i < drops.length; i++) {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        }
+    }
+    setInterval(draw, 33);
+
+    async function typeEffect(elementId, text, delay = 70) {
+        const element = document.getElementById(elementId);
+        for (let i = 0; i < text.length; i++) {
+            element.textContent += text.charAt(i);
+            await new Promise(r => setTimeout(r, delay));
+        }
+    }
+
+    async function runTerminal() {
+        await typeEffect("type-tools", "cd /opt/omar/tools && ./inventory.sh");
+        document.getElementById("cursor1").style.display = "none";
+        document.getElementById("out-tools").style.display = "block";
+
+        await new Promise(r => setTimeout(r, 450));
+        document.getElementById("cursor2").style.display = "inline-block";
+        await typeEffect("type-list", "ls -la repositories/");
+        document.getElementById("cursor2").style.display = "none";
+        document.getElementById("out-list").style.display = "block";
+
+        await new Promise(r => setTimeout(r, 450));
+        document.getElementById("cursor3").style.display = "inline-block";
+        await typeEffect("type-status", "cat status.log");
+        document.getElementById("cursor3").style.display = "none";
+        document.getElementById("out-status").style.display = "block";
+    }
+
+    runTerminal();
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
